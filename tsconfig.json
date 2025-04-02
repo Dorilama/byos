@@ -1,0 +1,23 @@
+{
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "sandbox"],
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
+    "checkJs": true,
+    "noEmit": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "rootDir": "src",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "stripInternal": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "strict": true
+  }
+}
