@@ -13,3 +13,4 @@ lib-cov
 logs
 temp
 .vscode
+package-lock.json

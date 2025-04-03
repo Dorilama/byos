@@ -18,7 +18,7 @@ type Kind<F extends HKT, T> = F extends {
 export interface SignalFunctions<SignalHKT extends HKT = HKT> {
   readonly signal: <T>(t: T, ...args: any) => Kind<SignalHKT, T>;
   readonly computed: <T>(
-    fn: (oldValue: T) => T,
+    fn: (...args: any) => T,
     deps?: Kind<SignalHKT, any>[],
     ...args: any
   ) => Kind<SignalHKT, T>;

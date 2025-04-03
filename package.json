@@ -16,6 +16,10 @@
       "types": "./src/usignal/index.d.ts",
       "import": "./src/usignal/index.js"
     },
+    "./alien-signals": {
+      "types": "./src/alien-signals/index.d.ts",
+      "import": "./src/alien-signals/index.js"
+    },
     "./package.json": "./package.json"
   },
   "module": "./src/index.js",
@@ -31,8 +35,17 @@
   "scripts": {
     "publish-package": "npm publish --access public"
   },
-  "devDependencies": {
-    "usignal": "^0.9.0"
+  "peerDependencies": {
+    "usignal": "^0.9",
+    "alien-signals": "^1"
+  },
+  "peerDependenciesMeta": {
+    "usignal": {
+      "optional": true
+    },
+    "alien-signals": {
+      "optional": true
+    }
   },
   "type": "module"
 }
