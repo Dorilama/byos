@@ -5,4 +5,6 @@ interface SignalHKT extends HKT {
   readonly signal: ReturnType<typeof signal<this["_T"]>>;
 }
 
-type SFN = SignalFunctions<SignalHKT>;
+export type SFN = SignalFunctions<SignalHKT>;
+
+export const signalFunctions: SFN;

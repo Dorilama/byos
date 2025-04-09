@@ -1,5 +1,5 @@
 {
-  "include": ["src"],
+  "include": ["src", "test"],
   "exclude": ["node_modules", "dist", "sandbox"],
   "compilerOptions": {
     "declaration": true,
@@ -11,7 +11,6 @@
     "module": "esnext",
     "moduleResolution": "node",
     "outDir": "dist",
-    "rootDir": "src",
     "sourceMap": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

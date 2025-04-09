@@ -4,7 +4,7 @@ export interface HKT {
   readonly signal?: unknown;
 }
 
-type Kind<F extends HKT, T> = F extends {
+export type Kind<F extends HKT, T> = F extends {
   readonly signal: unknown;
 }
   ? (F & {
@@ -15,6 +15,8 @@ type Kind<F extends HKT, T> = F extends {
       readonly _T: () => T;
     };
 
+export type MaybeSignal<SignalHKT extends HKT, T> = T | Kind<SignalHKT, T>;
+
 export interface SignalFunctions<SignalHKT extends HKT = HKT> {
   readonly signal: <T>(t: T, ...args: any) => Kind<SignalHKT, T>;
   readonly computed: <T>(
@@ -22,10 +24,10 @@ export interface SignalFunctions<SignalHKT extends HKT = HKT> {
     deps?: Kind<SignalHKT, any>[],
     ...args: any
   ) => Kind<SignalHKT, T>;
-  readonly toValue: <T>(t: T | Kind<SignalHKT, T>, ...args: any) => T;
+  readonly toValue: <T>(t: MaybeSignal<SignalHKT, T>, ...args: any) => T;
   readonly setValue: <T>(s: Kind<SignalHKT, T>, t: T, ...args: any) => void;
   readonly effect: (
-    fn: (onCleanup?: (cb: () => void) => void) => undefined | (() => void),
+    fn: (onCleanup?: (cb: () => void) => void) => void | (() => void),
     deps?: Kind<SignalHKT, any>[],
     ...args: any
   ) => () => void;

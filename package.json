@@ -33,11 +33,12 @@
     "url": ""
   },
   "scripts": {
+    "test": "vitest",
     "publish-package": "npm publish --access public"
   },
   "peerDependencies": {
-    "usignal": "^0.9",
-    "alien-signals": "^1"
+    "alien-signals": "^1",
+    "usignal": "^0.9"
   },
   "peerDependenciesMeta": {
     "usignal": {
@@ -47,5 +48,8 @@
       "optional": true
     }
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "vitest": "^3.1.1"
+  }
 }

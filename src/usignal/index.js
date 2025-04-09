@@ -9,5 +9,5 @@ export const signalFunctions = {
   setValue: (s, t) => {
     s.value = t;
   },
-  effect: (fn) => effect(fn),
+  effect: (fn) => effect(() => fn()),
 };
