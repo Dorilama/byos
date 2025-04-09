@@ -34,6 +34,7 @@
   },
   "scripts": {
     "test": "vitest",
+    "install-peer": "node ./scripts/peer.js",
     "publish-package": "npm publish --access public"
   },
   "peerDependencies": {
