@@ -36,7 +36,7 @@ for (const name of names) {
             `import { HKT, SignalFunctions } from "../index";
 import { signal } from "${name}";
 
-interface SignalHKT extends HKT {
+export interface SignalHKT extends HKT {
 readonly signal: ReturnType<typeof signal<this["_T"]>>;
 }
 

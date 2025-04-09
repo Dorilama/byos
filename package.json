@@ -12,6 +12,14 @@
       "types": "./src/index.d.ts",
       "import": "./src/index.js"
     },
+    "./@preact-signals-core": {
+      "types": "./src/@preact-signals-core/index.d.ts",
+      "import": "./src/@preact-signals-core/index.js"
+    },
+    "./@webreflection-signal": {
+      "types": "./src/@webreflection-signal/index.d.ts",
+      "import": "./src/@webreflection-signal/index.js"
+    },
     "./alien-signals": {
       "types": "./src/alien-signals/index.d.ts",
       "import": "./src/alien-signals/index.js"
@@ -39,10 +47,18 @@
     "publish-package": "npm publish --access public"
   },
   "peerDependencies": {
+    "@preact/signals-core": "^1",
+    "@webreflection/signal": "^2",
     "alien-signals": "^1",
     "usignal": "^0.9"
   },
   "peerDependenciesMeta": {
+    "@preact/signals-core": {
+      "optional": true
+    },
+    "@webreflection/signal": {
+      "optional": true
+    },
     "alien-signals": {
       "optional": true
     },

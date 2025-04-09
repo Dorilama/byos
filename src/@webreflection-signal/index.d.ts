@@ -1,5 +1,5 @@
 import { HKT, SignalFunctions } from "../index";
-import { signal } from "usignal";
+import { signal } from "@webreflection/signal";
 
 export interface SignalHKT extends HKT {
   readonly signal: ReturnType<typeof signal<this["_T"]>>;

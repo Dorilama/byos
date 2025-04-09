@@ -1,6 +1,8 @@
 import { expect, test } from "vitest";
-import { signalFunctions as U } from "../src/usignal";
-import { signalFunctions as A } from "../src/alien-signals";
+import { signalFunctions as Usignal } from "../src/usignal";
+import { signalFunctions as AlienSignals } from "../src/alien-signals";
+import { signalFunctions as PreactSignals } from "../src/@preact-signals-core";
+import { signalFunctions as WebreflectionSignal } from "../src/@webreflection-signal";
 
 /**
  * @template {import("../src").HKT} SignalHKT
@@ -59,5 +61,7 @@ function testUseCounter(fn) {
   };
 }
 
-test("usignal useCounter", testUseCounter(U));
-test("alien-signals useCounter", testUseCounter(A));
+test("usignal useCounter", testUseCounter(Usignal));
+test("alien-signals useCounter", testUseCounter(AlienSignals));
+test("@preact/signals-core useCounter", testUseCounter(PreactSignals));
+test("@webreflection/signal useCounter", testUseCounter(WebreflectionSignal));
