@@ -3,15 +3,6 @@ import { signalFunctions as U } from "../src/usignal";
 import { signalFunctions as A } from "../src/alien-signals";
 
 /**
- *
- * @param {number} milliseconds
- * @returns
- */
-const sleep = (milliseconds) => {
-  return new Promise((resolve) => setTimeout(resolve, milliseconds));
-};
-
-/**
  * @template {import("../src").HKT} SignalHKT
  * @param {import("../src").SignalFunctions<SignalHKT>} fn
  * @param {import("../src").MaybeSignal<SignalHKT,number>} [initialValue]
@@ -54,7 +45,6 @@ function testUseCounter(fn) {
     counter1.add();
     counter2.add();
     counter3.add();
-    await sleep(100);
     expect(fn.toValue(counter1.count)).toBe(1);
     expect(fn.toValue(counter2.count)).toBe(11);
     expect(fn.toValue(counter3.count)).toBe(21);
