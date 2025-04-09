@@ -12,13 +12,13 @@
       "types": "./src/index.d.ts",
       "import": "./src/index.js"
     },
-    "./usignal": {
-      "types": "./src/usignal/index.d.ts",
-      "import": "./src/usignal/index.js"
-    },
     "./alien-signals": {
       "types": "./src/alien-signals/index.d.ts",
       "import": "./src/alien-signals/index.js"
+    },
+    "./usignal": {
+      "types": "./src/usignal/index.d.ts",
+      "import": "./src/usignal/index.js"
     },
     "./package.json": "./package.json"
   },
@@ -35,6 +35,7 @@
   "scripts": {
     "test": "vitest",
     "install-peer": "node ./scripts/peer.js",
+    "add-package": "node ./scripts/addPackage.js",
     "publish-package": "npm publish --access public"
   },
   "peerDependencies": {
@@ -42,15 +43,16 @@
     "usignal": "^0.9"
   },
   "peerDependenciesMeta": {
-    "usignal": {
+    "alien-signals": {
       "optional": true
     },
-    "alien-signals": {
+    "usignal": {
       "optional": true
     }
   },
   "type": "module",
   "devDependencies": {
+    "@types/node": "^22.14.0",
     "vitest": "^3.1.1"
   }
 }

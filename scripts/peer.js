@@ -7,7 +7,7 @@ const peer = Object.entries(pkg.peerDependencies).map(
 
 const install = spawn("npm", ["install", "--save=false", ...peer]);
 
-install.stderr.on("install", (data) => {
+install.stderr.on("error", (data) => {
   console.error(`install error: ${data}`);
 });
 
