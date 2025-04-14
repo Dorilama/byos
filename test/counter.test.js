@@ -12,19 +12,29 @@ import { signalFunctions as WebreflectionSignal } from "../src/@webreflection-si
  * @returns {{count:import("../src").Kind<SignalHKT,number>, add:(n?:number)=>void, padded:import("../src").Kind<SignalHKT,string> }}
  */
 function useCounter(fn, initialValue, fillString) {
+  //@ts-expect-error
+  fn.computed(() => {});
+  //@ts-expect-error
+  fn.effect(() => {});
+
   const count = fn.signal(fn.toValue(initialValue) || 0);
-  const padded = fn.computed(() => {
+  const [padded] = fn.computed(() => {
     const value = fn.toValue(count).toString();
     const fill = fn.toValue(fillString) ?? "0";
     return value.padStart(3, fill);
-  });
+  }, [count, fillString]);
   const add = (n = 1) => {
     fn.setValue(count, fn.toValue(count) + n);
   };
   fn.effect(() => {
     fn.setValue(count, fn.toValue(initialValue) || 0);
-  });
-  return { count, add, padded };
+  }, [initialValue]);
+
+  return {
+    count,
+    add,
+    padded,
+  };
 }
 
 /**

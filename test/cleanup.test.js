@@ -1,0 +1,56 @@
+import { expect, test, vi } from "vitest";
+import { signalFunctions as Usignal } from "../src/usignal";
+import { signalFunctions as AlienSignals } from "../src/alien-signals";
+import { signalFunctions as PreactSignals } from "../src/@preact-signals-core";
+import { signalFunctions as WebreflectionSignal } from "../src/@webreflection-signal";
+
+/**
+ * @template {import("../src").HKT} SignalHKT
+ * @param {import("../src").SignalFunctions<SignalHKT>} fn
+ * @param {()=>void} cb
+ * @param {import("../src").MaybeSignal<SignalHKT,any>} dep
+ * @returns {()=>void}
+ */
+function useSimpleEffect(fn, cb, dep) {
+  const stop = fn.effect(() => {
+    const d = fn.toValue(dep);
+    return cb;
+  }, [dep]);
+
+  return stop;
+}
+
+/**
+ * @template {import("../src").HKT} SignalHKT
+ * @param {import("../src").SignalFunctions<SignalHKT>} fn
+ */
+function testUseSimpleEffect(fn) {
+  return async () => {
+    const dep = fn.signal(0);
+    const cb = vi.fn();
+    const stop = useSimpleEffect(fn, cb, dep);
+    expect(cb).not.toBeCalled();
+    fn.setValue(dep, 1);
+    expect(cb).toBeCalledTimes(1);
+    fn.setValue(dep, 1);
+    expect(cb).toBeCalledTimes(1);
+    fn.setValue(dep, 2);
+    fn.setValue(dep, 3);
+    expect(cb).toBeCalledTimes(3);
+    stop();
+    expect(cb).toBeCalledTimes(4);
+    fn.setValue(dep, 4);
+    expect(cb).toBeCalledTimes(4);
+  };
+}
+
+test("usignal useSimpleEffect", testUseSimpleEffect(Usignal));
+test("alien-signals useSimpleEffect", testUseSimpleEffect(AlienSignals));
+test(
+  "@preact/signals-core useSimpleEffect",
+  testUseSimpleEffect(PreactSignals)
+);
+test(
+  "@webreflection/signal useSimpleEffect",
+  testUseSimpleEffect(WebreflectionSignal)
+);

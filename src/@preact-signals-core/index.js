@@ -4,7 +4,7 @@ import { Signal, signal, computed, effect } from "@preact/signals-core";
  */
 export const signalFunctions = {
   signal,
-  computed,
+  computed: (fn) => [computed(fn), () => {}],
   toValue:
     /**
      * @template Z
@@ -15,5 +15,5 @@ export const signalFunctions = {
   setValue: (s, t) => {
     s.value = t;
   },
-  effect: (fn) => effect(() => fn()),
+  effect,
 };

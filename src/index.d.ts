@@ -17,18 +17,16 @@ export type Kind<F extends HKT, T> = F extends {
 
 export type MaybeSignal<SignalHKT extends HKT, T> = T | Kind<SignalHKT, T>;
 
-export interface SignalFunctions<SignalHKT extends HKT = HKT> {
-  readonly signal: <T>(t: T, ...args: any) => Kind<SignalHKT, T>;
+export interface SignalFunctions<SignalHKT extends HKT> {
+  readonly signal: <T>(t: T) => Kind<SignalHKT, T>;
   readonly computed: <T>(
-    fn: (...args: any) => T,
-    deps?: Kind<SignalHKT, any>[],
-    ...args: any
-  ) => Kind<SignalHKT, T>;
-  readonly toValue: <T>(t: MaybeSignal<SignalHKT, T>, ...args: any) => T;
-  readonly setValue: <T>(s: Kind<SignalHKT, T>, t: T, ...args: any) => void;
+    fn: () => T,
+    deps: MaybeSignal<SignalHKT, any>[]
+  ) => [signal: Kind<SignalHKT, T>, cleanup: () => void];
+  readonly toValue: <T>(t: MaybeSignal<SignalHKT, T>) => T;
+  readonly setValue: <T>(s: Kind<SignalHKT, T>, t: T) => void;
   readonly effect: (
-    fn: (onCleanup?: (cb: () => void) => void) => void | (() => void),
-    deps?: Kind<SignalHKT, any>[],
-    ...args: any
+    fn: () => void | (() => void),
+    deps: MaybeSignal<SignalHKT, any>[]
   ) => () => void;
 }

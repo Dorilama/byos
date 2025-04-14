@@ -4,10 +4,10 @@ import { Signal, signal, computed, effect } from "usignal";
  */
 export const signalFunctions = {
   signal,
-  computed,
+  computed: (fn) => [computed(fn), () => {}],
   toValue: (t) => (t instanceof Signal ? t.valueOf() : t),
   setValue: (s, t) => {
     s.value = t;
   },
-  effect: (fn) => effect(() => fn()),
+  effect: (fn) => effect(fn),
 };
