@@ -3,6 +3,7 @@ import { signalFunctions as Usignal } from "../src/usignal";
 import { signalFunctions as AlienSignals } from "../src/alien-signals";
 import { signalFunctions as PreactSignals } from "../src/@preact-signals-core";
 import { signalFunctions as WebreflectionSignal } from "../src/@webreflection-signal";
+import { signalFunctions as VueReactivitySignal } from "../src/@vue-reactivity";
 
 /**
  * @template {import("../src").HKT} SignalHKT
@@ -75,3 +76,4 @@ test("usignal useCounter", testUseCounter(Usignal));
 test("alien-signals useCounter", testUseCounter(AlienSignals));
 test("@preact/signals-core useCounter", testUseCounter(PreactSignals));
 test("@webreflection/signal useCounter", testUseCounter(WebreflectionSignal));
+test("@vue/reactivity useCounter", testUseCounter(VueReactivitySignal));

@@ -3,6 +3,7 @@ import { signalFunctions as Usignal } from "../src/usignal";
 import { signalFunctions as AlienSignals } from "../src/alien-signals";
 import { signalFunctions as PreactSignals } from "../src/@preact-signals-core";
 import { signalFunctions as WebreflectionSignal } from "../src/@webreflection-signal";
+import { signalFunctions as VueReactivitySignal } from "../src/@vue-reactivity";
 
 /**
  * @template {import("../src").HKT} SignalHKT
@@ -53,4 +54,8 @@ test(
 test(
   "@webreflection/signal useSimpleEffect",
   testUseSimpleEffect(WebreflectionSignal)
+);
+test(
+  "@vue/reactivity useSimpleEffect",
+  testUseSimpleEffect(VueReactivitySignal)
 );
