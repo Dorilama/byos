@@ -33,7 +33,7 @@ export const signalFunctions = {
       });
       cleanup.length = 0;
     };
-    return [s, stop];
+    return s;
   },
   toValue: (t) => (isSignal(t) ? t.get() : t),
   setValue: (s, t) => {

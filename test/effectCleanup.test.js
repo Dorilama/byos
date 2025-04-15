@@ -9,9 +9,10 @@ import { signalFunctions as ToddleSignal } from "../src/toddle";
 
 /**
  * @template {import("../src").HKT} SignalHKT
- * @param {import("../src").SignalFunctions<SignalHKT>} fn
+ * @template {import("../src").HKT} ComputedHKT
+ * @param {import("../src").SignalFunctions<SignalHKT,ComputedHKT>} fn
  * @param {()=>void} cb
- * @param {import("../src").MaybeSignal<SignalHKT,any>} dep
+ * @param {import("../src").MaybeSignal<SignalHKT,ComputedHKT,any>} dep
  * @returns {()=>void}
  */
 function useSimpleEffect(fn, cb, dep) {
@@ -25,7 +26,8 @@ function useSimpleEffect(fn, cb, dep) {
 
 /**
  * @template {import("../src").HKT} SignalHKT
- * @param {import("../src").SignalFunctions<SignalHKT>} fn
+ * @template {import("../src").HKT} ComputedHKT
+ * @param {import("../src").SignalFunctions<SignalHKT,ComputedHKT>} fn
  */
 function testUseSimpleEffect(fn) {
   return async () => {

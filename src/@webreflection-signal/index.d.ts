@@ -1,10 +1,14 @@
 import { HKT, SignalFunctions } from "../index";
-import { signal } from "@webreflection/signal";
+import { Signal, Computed } from "@webreflection/signal";
 
 export interface SignalHKT extends HKT {
-  readonly signal: ReturnType<typeof signal<this["_T"]>>;
+  readonly signal: Signal<this["_T"]>;
 }
 
-export type SFN = SignalFunctions<SignalHKT>;
+export interface ComputedHKT extends HKT {
+  readonly signal: Computed<this["_T"]>;
+}
+
+export type SFN = SignalFunctions<SignalHKT, ComputedHKT>;
 
 export const signalFunctions: SFN;

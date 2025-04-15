@@ -9,34 +9,24 @@ import { signalFunctions as ToddleSignal } from "../src/toddle";
 
 /**
  * @template {import("../src").HKT} SignalHKT
- * @param {import("../src").SignalFunctions<SignalHKT>} fn
- */
-function checkDepsParam(fn) {
-  //@ts-expect-error
-  fn.computed(() => {});
-  //@ts-expect-error
-  fn.effect(() => {});
-}
-
-/**
- * @template {import("../src").HKT} SignalHKT
- * @param {import("../src").SignalFunctions<SignalHKT>} fn
- * @param {import("../src").MaybeSignal<SignalHKT,number>} [initialValue]
- * @param {import("../src").MaybeSignal<SignalHKT,string>} [fillString]
- * @returns {{count:import("../src").Kind<SignalHKT,number>, add:(n?:number)=>void, padded:import("../src").Kind<SignalHKT,string>, paddedDouble:import("../src").Kind<SignalHKT,string> }}
+ * @template {import("../src").HKT} ComputedHKT
+ * @param {import("../src").SignalFunctions<SignalHKT,ComputedHKT>} fn
+ * @param {import("../src").MaybeSignal<SignalHKT,ComputedHKT,number>} [initialValue]
+ * @param {import("../src").MaybeSignal<SignalHKT,ComputedHKT,string>} [fillString]
+ * @returns {{count:import("../src").Kind<SignalHKT,number>, add:(n?:number)=>void, padded:import("../src").Kind<ComputedHKT,string>, paddedDouble:import("../src").Kind<ComputedHKT,string> }}
  */
 function useCounter(fn, initialValue, fillString) {
   const count = fn.signal(fn.toValue(initialValue) || 0);
-  const [padded] = fn.computed(() => {
+  const padded = fn.computed(() => {
     const value = fn.toValue(count).toString();
     const fill = fn.toValue(fillString) ?? "0";
     return value.padStart(3, fill);
   }, [count, fillString]);
-  const [double] = fn.computed(() => {
+  const double = fn.computed(() => {
     const value = fn.toValue(count);
     return value * 2;
   }, [count]);
-  const [paddedDouble] = fn.computed(() => {
+  const paddedDouble = fn.computed(() => {
     const value = fn.toValue(double).toString();
     const fill = fn.toValue(fillString) ?? "0";
     return value.padStart(3, fill);
@@ -58,7 +48,8 @@ function useCounter(fn, initialValue, fillString) {
 
 /**
  * @template {import("../src").HKT} SignalHKT
- * @param {import("../src").SignalFunctions<SignalHKT>} fn
+ * @template {import("../src").HKT} ComputedHKT
+ * @param {import("../src").SignalFunctions<SignalHKT,ComputedHKT>} fn
  */
 function testUseCounter(fn) {
   return async () => {

@@ -6,14 +6,8 @@ const noop = () => {};
  */
 export const signalFunctions = {
   signal: ref,
-  computed: (fn) => [computed(fn), () => {}],
-  toValue:
-    /**
-     * @template Z
-     * @param {import("..").MaybeSignal<import(".").SignalHKT,Z>} t
-     * @returns
-     */
-    (t) => toValue(/** @type {import('@vue/reactivity').MaybeRef<Z>}*/ (t)),
+  computed: (fn) => computed(fn),
+  toValue: (t) => toValue(t),
   setValue: (s, t) => {
     s.value = t;
   },

@@ -34,13 +34,17 @@ for (const name of names) {
           await writeFile(
             declaration,
             `import { HKT, SignalFunctions } from "../index";
-import { signal } from "${name}";
+import { signal, computed} from "${name}";
 
 export interface SignalHKT extends HKT {
-readonly signal: ReturnType<typeof signal<this["_T"]>>;
+  readonly signal: ReturnType<typeof signal<this["_T"]>>;
 }
 
-export type SFN = SignalFunctions<SignalHKT>;
+export interface ComputedHKT extends HKT {
+  readonly signal: ReturnType<typeof computed<this["_T"]>>;
+}
+
+export type SFN = SignalFunctions<SignalHKT, ComputedHKT>;
 
 export const signalFunctions: SFN;`
           );
