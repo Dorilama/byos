@@ -1,5 +1,5 @@
 import { HKT, SignalFunctions } from "../index";
-import { Ref } from "@vue/reactivity";
+import { Ref } from "vue";
 
 export interface SignalHKT extends HKT {
   readonly signal: Ref<this["_T"]>;

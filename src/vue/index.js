@@ -1,4 +1,4 @@
-import { ref, computed, effect, toValue } from "@vue/reactivity";
+import { ref, computed, watchEffect, toValue } from "vue";
 
 const noop = () => {};
 /**
@@ -18,14 +18,11 @@ export const signalFunctions = {
     s.value = t;
   },
   effect: (fn) => {
-    let cleanup = noop;
-    const runner = effect(() => {
-      cleanup();
-      cleanup = fn() || noop;
-    });
-    return () => {
-      cleanup();
-      runner.effect.stop();
-    };
+    return watchEffect(
+      (onCleanup) => {
+        onCleanup(fn() || noop);
+      },
+      { flush: "sync" }
+    );
   },
 };

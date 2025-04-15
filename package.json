@@ -32,6 +32,10 @@
       "types": "./src/usignal/index.d.ts",
       "import": "./src/usignal/index.js"
     },
+    "./vue": {
+      "types": "./src/vue/index.d.ts",
+      "import": "./src/vue/index.js"
+    },
     "./package.json": "./package.json"
   },
   "module": "./src/index.js",
@@ -55,7 +59,8 @@
     "@vue/reactivity": "^3",
     "@webreflection/signal": "^2",
     "alien-signals": "^1",
-    "usignal": "^0.9"
+    "usignal": "^0.9",
+    "vue": "^3"
   },
   "peerDependenciesMeta": {
     "@preact/signals-core": {
@@ -71,6 +76,9 @@
       "optional": true
     },
     "usignal": {
+      "optional": true
+    },
+    "vue": {
       "optional": true
     }
   },
