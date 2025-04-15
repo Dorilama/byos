@@ -16,7 +16,7 @@ export const signalFunctions = {
   computed: (fn, deps) => {
     const s = signal(fn());
     const update = () => {
-      s.value = fn();
+      s.set(fn());
     };
     /**
      * @type {(()=>void)[]}
@@ -35,7 +35,7 @@ export const signalFunctions = {
     };
     return [s, stop];
   },
-  toValue: (t) => (isSignal(t) ? t.value : t),
+  toValue: (t) => (isSignal(t) ? t.get() : t),
   setValue: (s, t) => {
     s.set(t);
   },

@@ -30,8 +30,9 @@ function useSimpleEffect(fn, cb, dep) {
 function testUseSimpleEffect(fn) {
   return async () => {
     const dep = fn.signal(0);
+    const dep2 = fn.computed(() => fn.toValue(dep), [dep]);
     const cb = vi.fn();
-    const stop = useSimpleEffect(fn, cb, dep);
+    const stop = useSimpleEffect(fn, cb, dep2);
     expect(cb).not.toBeCalled();
     fn.setValue(dep, 1);
     expect(cb).toBeCalledTimes(1);

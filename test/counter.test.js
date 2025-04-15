@@ -23,7 +23,7 @@ function checkDepsParam(fn) {
  * @param {import("../src").SignalFunctions<SignalHKT>} fn
  * @param {import("../src").MaybeSignal<SignalHKT,number>} [initialValue]
  * @param {import("../src").MaybeSignal<SignalHKT,string>} [fillString]
- * @returns {{count:import("../src").Kind<SignalHKT,number>, add:(n?:number)=>void, padded:import("../src").Kind<SignalHKT,string> }}
+ * @returns {{count:import("../src").Kind<SignalHKT,number>, add:(n?:number)=>void, padded:import("../src").Kind<SignalHKT,string>, paddedDouble:import("../src").Kind<SignalHKT,string> }}
  */
 function useCounter(fn, initialValue, fillString) {
   const count = fn.signal(fn.toValue(initialValue) || 0);
@@ -32,6 +32,15 @@ function useCounter(fn, initialValue, fillString) {
     const fill = fn.toValue(fillString) ?? "0";
     return value.padStart(3, fill);
   }, [count, fillString]);
+  const [double] = fn.computed(() => {
+    const value = fn.toValue(count);
+    return value * 2;
+  }, [count]);
+  const [paddedDouble] = fn.computed(() => {
+    const value = fn.toValue(double).toString();
+    const fill = fn.toValue(fillString) ?? "0";
+    return value.padStart(3, fill);
+  }, [double, fillString]);
   const add = (n = 1) => {
     fn.setValue(count, fn.toValue(count) + n);
   };
@@ -43,6 +52,7 @@ function useCounter(fn, initialValue, fillString) {
     count,
     add,
     padded,
+    paddedDouble,
   };
 }
 
@@ -63,6 +73,9 @@ function testUseCounter(fn) {
     expect(fn.toValue(counter1.padded)).toBe("000");
     expect(fn.toValue(counter2.padded)).toBe("-10");
     expect(fn.toValue(counter3.padded)).toBe("*20");
+    expect(fn.toValue(counter1.paddedDouble)).toBe("000");
+    expect(fn.toValue(counter2.paddedDouble)).toBe("-20");
+    expect(fn.toValue(counter3.paddedDouble)).toBe("*40");
     counter1.add();
     counter2.add();
     counter3.add();
@@ -72,11 +85,16 @@ function testUseCounter(fn) {
     expect(fn.toValue(counter1.padded)).toBe("001");
     expect(fn.toValue(counter2.padded)).toBe("-11");
     expect(fn.toValue(counter3.padded)).toBe("*21");
+    expect(fn.toValue(counter1.paddedDouble)).toBe("002");
+    expect(fn.toValue(counter2.paddedDouble)).toBe("-22");
+    expect(fn.toValue(counter3.paddedDouble)).toBe("*42");
     fn.setValue(initialValue, 1);
     expect(fn.toValue(counter3.count)).toBe(1);
     expect(fn.toValue(counter3.padded)).toBe("**1");
+    expect(fn.toValue(counter3.paddedDouble)).toBe("**2");
     fn.setValue(fillString, "#");
     expect(fn.toValue(counter3.padded)).toBe("##1");
+    expect(fn.toValue(counter3.paddedDouble)).toBe("##2");
   };
 }
 
