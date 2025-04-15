@@ -5,6 +5,7 @@ import { signalFunctions as PreactSignals } from "../src/@preact-signals-core";
 import { signalFunctions as WebreflectionSignal } from "../src/@webreflection-signal";
 import { signalFunctions as VueReactivitySignal } from "../src/@vue-reactivity";
 import { signalFunctions as VueSignal } from "../src/vue";
+import { signalFunctions as ToddleSignal } from "../src/toddle";
 
 /**
  * @template {import("../src").HKT} SignalHKT
@@ -61,3 +62,4 @@ test(
   testUseSimpleEffect(VueReactivitySignal)
 );
 test("vue useSimpleEffect", testUseSimpleEffect(VueSignal));
+test("toddle useSimpleEffect", testUseSimpleEffect(ToddleSignal));

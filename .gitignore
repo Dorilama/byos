@@ -14,3 +14,5 @@ logs
 temp
 .vscode
 package-lock.json
+
+src/toddle/signal.*

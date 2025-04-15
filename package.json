@@ -59,6 +59,7 @@
     "@vue/reactivity": "^3",
     "@webreflection/signal": "^2",
     "alien-signals": "^1",
+    "fast-deep-equal": "^3",
     "usignal": "^0.9",
     "vue": "^3"
   },
@@ -73,6 +74,9 @@
       "optional": true
     },
     "alien-signals": {
+      "optional": true
+    },
+    "fast-deep-equal": {
       "optional": true
     },
     "usignal": {

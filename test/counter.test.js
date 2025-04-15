@@ -5,6 +5,18 @@ import { signalFunctions as PreactSignals } from "../src/@preact-signals-core";
 import { signalFunctions as WebreflectionSignal } from "../src/@webreflection-signal";
 import { signalFunctions as VueReactivitySignal } from "../src/@vue-reactivity";
 import { signalFunctions as VueSignal } from "../src/vue";
+import { signalFunctions as ToddleSignal } from "../src/toddle";
+
+/**
+ * @template {import("../src").HKT} SignalHKT
+ * @param {import("../src").SignalFunctions<SignalHKT>} fn
+ */
+function checkDepsParam(fn) {
+  //@ts-expect-error
+  fn.computed(() => {});
+  //@ts-expect-error
+  fn.effect(() => {});
+}
 
 /**
  * @template {import("../src").HKT} SignalHKT
@@ -14,11 +26,6 @@ import { signalFunctions as VueSignal } from "../src/vue";
  * @returns {{count:import("../src").Kind<SignalHKT,number>, add:(n?:number)=>void, padded:import("../src").Kind<SignalHKT,string> }}
  */
 function useCounter(fn, initialValue, fillString) {
-  //@ts-expect-error
-  fn.computed(() => {});
-  //@ts-expect-error
-  fn.effect(() => {});
-
   const count = fn.signal(fn.toValue(initialValue) || 0);
   const [padded] = fn.computed(() => {
     const value = fn.toValue(count).toString();
@@ -79,3 +86,4 @@ test("@preact/signals-core useCounter", testUseCounter(PreactSignals));
 test("@webreflection/signal useCounter", testUseCounter(WebreflectionSignal));
 test("@vue/reactivity useCounter", testUseCounter(VueReactivitySignal));
 test("vue useCounter", testUseCounter(VueSignal));
+test("toddle useCounter", testUseCounter(ToddleSignal));

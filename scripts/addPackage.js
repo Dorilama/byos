@@ -5,7 +5,7 @@ import originalPkg from "../package.json" with  { type: "json" };
 const names = process.argv.slice(2);
 
 /**
- * @type {string[]}
+ * @type {[string,string][]}
  */
 const installed = [];
 
@@ -96,7 +96,7 @@ function parseVersion(version) {
   const chunks = [];
   for (const s of version.split(".")) {
     chunks.push(s);
-    if (parseInt(s.match(/\d+/)) > 0) {
+    if (parseInt(s.match(/\d+/)?.[0] || '-1') > 0) {
       break;
     }
   }
