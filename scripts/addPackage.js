@@ -51,17 +51,20 @@ export const signalFunctions: SFN;`
           await writeFile(
             index,
             `import {  signal, computed, effect } from "${name}";
+
+const noop = () => {};
 /**
 * @type {import(".").SFN}
 */
 export const signalFunctions = {
-signal,
-computed,
-toValue: (t) => t,
-setValue: (s, t) => {
-s.value = t;
-},
-effect: (fn) => effect(() => fn()),
+  signal,
+  computed,
+  computedCleanup: noop,
+  toValue: (t) => t,
+  setValue: (s, t) => {
+    s.value = t;
+  },
+  effect: (fn) => effect(() => fn()),
 };`
           );
         } catch (error) {

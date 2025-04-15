@@ -28,13 +28,15 @@ export const signalFunctions = {
       }
     });
     const stop = () => {
-      cleanup.forEach((cb) => {
+      cleanup.forEach((cb, i) => {
         cb();
       });
       cleanup.length = 0;
     };
+    s.subscribe(noop, { destroy: stop });
     return s;
   },
+  computedCleanup: (t) => t.destroy(),
   toValue: (t) => (isSignal(t) ? t.get() : t),
   setValue: (s, t) => {
     s.set(t);

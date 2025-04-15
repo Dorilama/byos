@@ -7,6 +7,7 @@ const noop = () => {};
 export const signalFunctions = {
   signal: ref,
   computed: (fn) => computed(fn),
+  computedCleanup: noop,
   toValue: (t) => toValue(t),
   setValue: (s, t) => {
     s.value = t;

@@ -14,17 +14,58 @@ import { signalFunctions as ToddleSignal } from "../src/toddle";
  */
 function testComputedCleanup(fn) {
   return async () => {
-    const dep = fn.signal(0);
     const cb = vi.fn();
-    const dep2 = fn.computed(() => {
-      cb();
-      return fn.toValue(dep);
-    }, [dep]);
-    expect(fn.toValue(dep2)).toBe(0);
-    // expect(cb).toBeCalledTimes(2);
-    fn.setValue(dep, 1);
-    expect(fn.toValue(dep2)).toBe(1);
-    // expect(cb).toBeCalledTimes(3);
+    cb.mockName("cb");
+    const cb2 = vi.fn();
+    cb2.mockName("cb2");
+    const sig = fn.signal(0);
+
+    const trigger = fn.signal(0);
+
+    const stopEffect = fn.effect(() => {
+      const comp = fn.computed(() => {
+        cb();
+        return fn.toValue(sig);
+      }, [sig]);
+      const comp2 = fn.computed(() => {
+        cb2();
+        const s = fn.toValue(sig);
+        const c = fn.toValue(comp);
+        return s + c;
+      }, [sig, comp]);
+      fn.setValue(sig, fn.toValue(trigger));
+      fn.toValue(comp);
+      fn.toValue(comp2);
+      return () => {
+        fn.computedCleanup(comp);
+        fn.computedCleanup(comp2);
+      };
+    }, [trigger]);
+
+    expect(cb).toBeCalled();
+    expect(cb2).toBeCalled();
+    cb.mockClear();
+    cb2.mockClear();
+    fn.setValue(sig, 1);
+    expect(cb).toBeCalled();
+    expect(cb2).toBeCalled();
+    cb.mockClear();
+    cb2.mockClear();
+    fn.setValue(trigger, 2);
+    expect(cb).toBeCalled();
+    expect(cb2).toBeCalled();
+    stopEffect();
+    cb.mockClear();
+    cb2.mockClear();
+    fn.setValue(trigger, 2);
+    expect(cb).not.toBeCalled();
+    expect(cb2).not.toBeCalled();
+    cb.mockClear();
+    cb2.mockClear();
+    fn.setValue(sig, 1);
+    expect(cb).not.toBeCalled();
+    // todo!!! fix error with @webreflection/signal
+    expect(cb2).not.toBeCalled();
   };
 }
 

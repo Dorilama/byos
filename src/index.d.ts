@@ -29,6 +29,7 @@ export interface SignalFunctions<
     fn: () => T,
     deps: MaybeSignal<SignalHKT, ComputedHKT, any>[]
   ) => Kind<ComputedHKT, T>;
+  readonly computedCleanup: <T>(t: Kind<ComputedHKT, T>) => void;
   readonly toValue: <T>(t: MaybeSignal<SignalHKT, ComputedHKT, T>) => T;
   readonly setValue: <T>(s: Kind<SignalHKT, T>, t: T) => void;
   readonly effect: (
