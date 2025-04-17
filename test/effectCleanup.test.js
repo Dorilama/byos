@@ -1,4 +1,5 @@
 import { expect, test, vi } from "vitest";
+import scope from "./scope";
 import { signalFunctions as Usignal } from "../src/usignal";
 import { signalFunctions as AlienSignals } from "../src/alien-signals";
 import { signalFunctions as PreactSignals } from "../src/@preact-signals-core";
@@ -6,6 +7,7 @@ import { signalFunctions as WebreflectionSignal } from "../src/@webreflection-si
 import { signalFunctions as VueReactivitySignal } from "../src/@vue-reactivity";
 import { signalFunctions as VueSignal } from "../src/vue";
 import { signalFunctions as ToddleSignal } from "../src/toddle";
+import { signalFunctions as SolidJsSignal } from "../src/solid-js";
 
 /**
  * @template {import("../src").HKT} SignalHKT
@@ -66,3 +68,7 @@ test(
 );
 test("vue useSimpleEffect", testUseSimpleEffect(VueSignal));
 test("toddle useSimpleEffect", testUseSimpleEffect(ToddleSignal));
+test(
+  "solid-js useSimpleEffect",
+  scope.solidJs(testUseSimpleEffect(SolidJsSignal))
+);

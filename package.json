@@ -28,6 +28,10 @@
       "types": "./src/alien-signals/index.d.ts",
       "import": "./src/alien-signals/index.js"
     },
+    "./solid-js": {
+      "types": "./src/solid-js/index.d.ts",
+      "import": "./src/solid-js/index.js"
+    },
     "./usignal": {
       "types": "./src/usignal/index.d.ts",
       "import": "./src/usignal/index.js"
@@ -60,6 +64,7 @@
     "@webreflection/signal": "^2",
     "alien-signals": "^1",
     "fast-deep-equal": "^3",
+    "solid-js": "^1",
     "usignal": "^0.9",
     "vue": "^3"
   },
@@ -77,6 +82,9 @@
       "optional": true
     },
     "fast-deep-equal": {
+      "optional": true
+    },
+    "solid-js": {
       "optional": true
     },
     "usignal": {
