@@ -1,5 +1,8 @@
 import { test, describe } from "vitest";
 import { simpleSignal, simpleComputed, simpleEffect } from "../test";
+import { testUseCounter } from "../test/counter";
+import { testEffectCleanup } from "../test/effectCleanup";
+import { testComputedCleanup } from "../test/computedCleanup";
 import { signalFunctions } from ".";
 
 describe(`vue`, () => {
@@ -11,5 +14,14 @@ describe(`vue`, () => {
   });
   test(`simpleEffect`, () => {
     simpleEffect(signalFunctions);
+  });
+  test(`useCounter`, () => {
+    testUseCounter(signalFunctions);
+  });
+  test(`testEffectCleanup`, () => {
+    testEffectCleanup(signalFunctions);
+  });
+  test(`testComputedCleanup`, () => {
+    testComputedCleanup(signalFunctions);
   });
 });

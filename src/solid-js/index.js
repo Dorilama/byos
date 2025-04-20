@@ -3,6 +3,7 @@ import {
   createMemo,
   createRenderEffect,
   onCleanup,
+  createRoot,
 } from "solid-js";
 /**
  * @type {import(".").IsFunction}
@@ -32,9 +33,14 @@ export const signalFunctions = {
     s[1](/** @type {Exclude<Z, Function>} */ (t));
   },
   effect: (fn) => {
-    createRenderEffect(() => {
-      onCleanup(fn() || noop);
+    let dispose = noop;
+    createRoot((disposeFn) => {
+      dispose = disposeFn;
+      createRenderEffect(() => {
+        onCleanup(fn() || noop);
+      });
     });
-    return noop;
+
+    return dispose;
   },
 };
