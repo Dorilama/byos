@@ -1,4 +1,11 @@
-import { ref, computed, watchEffect, toValue } from "vue";
+import {
+  ref,
+  computed,
+  watchEffect,
+  toValue,
+  getCurrentScope,
+  onScopeDispose,
+} from "vue";
 
 const noop = () => {};
 /**
@@ -15,7 +22,11 @@ export const signalFunctions = {
   effect: (fn) => {
     return watchEffect(
       (onCleanup) => {
-        onCleanup(fn() || noop);
+        const teardown = fn() || noop;
+        if (getCurrentScope()) {
+          onScopeDispose(teardown);
+        }
+        onCleanup(teardown);
       },
       { flush: "sync" }
     );
