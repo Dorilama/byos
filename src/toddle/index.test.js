@@ -5,23 +5,23 @@ import { testEffectCleanup } from "../test/effectCleanup";
 import { testComputedCleanup } from "../test/computedCleanup";
 import { signalFunctions } from ".";
 
-describe(`toddle`, () => {
-  test(`simpleSignal`, () => {
+describe("toddle", () => {
+  test("simpleSignal", () => {
     simpleSignal(signalFunctions);
   });
-  test(`simpleComputed`, () => {
+  test("simpleComputed", () => {
     simpleComputed(signalFunctions);
   });
-  test(`simpleEffect`, () => {
+  test("simpleEffect", () => {
     simpleEffect(signalFunctions);
   });
-  test(`useCounter`, () => {
+  test("useCounter", () => {
     testUseCounter(signalFunctions);
   });
-  test(`testEffectCleanup`, () => {
+  test("testEffectCleanup", () => {
     testEffectCleanup(signalFunctions);
   });
-  test(`testComputedCleanup`, () => {
+  test("testComputedCleanup", () => {
     testComputedCleanup(signalFunctions);
   });
 });

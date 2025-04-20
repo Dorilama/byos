@@ -29,6 +29,7 @@ for (const name of names) {
         const folder = new URL(`../src/${safeName}/`, import.meta.url);
         const declaration = new URL("./index.d.ts", folder);
         const index = new URL("./index.js", folder);
+        const test = new URL("./index.test.js", folder);
         try {
           await mkdir(folder);
           await writeFile(
@@ -67,6 +68,34 @@ export const signalFunctions = {
   effect: (fn) => effect(() => fn()),
 };`
           );
+          await writeFile(test, `import { test, describe } from "vitest";
+import { simpleSignal, simpleComputed, simpleEffect } from "../test";
+import { testUseCounter } from "../test/counter";
+import { testEffectCleanup } from "../test/effectCleanup";
+import { testComputedCleanup } from "../test/computedCleanup";
+import { signalFunctions } from ".";
+
+describe("${name}", () => {
+  test("simpleSignal", () => {
+    simpleSignal(signalFunctions);
+  });
+  test("simpleComputed", () => {
+    simpleComputed(signalFunctions);
+  });
+  test("simpleEffect", () => {
+    simpleEffect(signalFunctions);
+  });
+  test("useCounter", () => {
+    testUseCounter(signalFunctions);
+  });
+  test("testEffectCleanup", () => {
+    testEffectCleanup(signalFunctions);
+  });
+  test("testComputedCleanup", () => {
+    testComputedCleanup(signalFunctions);
+  });
+});
+`);
         } catch (error) {
           const msg = error instanceof Error ? error.message : error;
           console.error(`error creating files for ${name}: ${msg}`);

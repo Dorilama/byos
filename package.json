@@ -60,7 +60,6 @@
   },
   "peerDependencies": {
     "@preact/signals-core": "^1",
-    "@solidjs/testing-library": "^0.8",
     "@vue/reactivity": "^3",
     "@webreflection/signal": "^2",
     "alien-signals": "^1",
@@ -71,9 +70,6 @@
   },
   "peerDependenciesMeta": {
     "@preact/signals-core": {
-      "optional": true
-    },
-    "@solidjs/testing-library": {
       "optional": true
     },
     "@vue/reactivity": {

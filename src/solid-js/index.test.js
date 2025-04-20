@@ -4,25 +4,24 @@ import { signalFunctions } from ".";
 import { testUseCounter } from "../test/counter";
 import { testEffectCleanup } from "../test/effectCleanup";
 import { testComputedCleanup } from "../test/computedCleanup";
-import { testEffect } from "@solidjs/testing-library";
 
-describe.only(`solid-js`, () => {
-  test(`simpleSignal`, () => {
+describe.only("solid-js", () => {
+  test("simpleSignal", () => {
     simpleSignal(signalFunctions);
   });
-  test(`simpleComputed`, () => {
+  test("simpleComputed", () => {
     simpleComputed(signalFunctions);
   });
-  test(`simpleEffect`, () => {
+  test("simpleEffect", () => {
     simpleEffect(signalFunctions);
   });
-  test(`useCounter`, () => {
+  test("useCounter", () => {
     testUseCounter(signalFunctions);
   });
-  test(`testEffectCleanup`, () => {
+  test("testEffectCleanup", () => {
     testEffectCleanup(signalFunctions);
   });
-  test(`testComputedCleanup`, () => {
+  test("testComputedCleanup", () => {
     testComputedCleanup(signalFunctions);
   });
 });
