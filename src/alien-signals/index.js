@@ -16,15 +16,15 @@ export const signalFunctions = {
     s(t);
   },
   effect: (fn) => {
-    let cleanup = noop;
+    let teardown = noop;
     const stopEffect = effectScope(() => {
       effect(() => {
-        cleanup();
-        cleanup = fn() || noop;
+        teardown();
+        teardown = fn() || noop;
       });
     });
     return () => {
-      cleanup();
+      teardown();
       stopEffect();
     };
   },

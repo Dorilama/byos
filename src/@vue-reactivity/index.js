@@ -13,13 +13,13 @@ export const signalFunctions = {
     s.value = t;
   },
   effect: (fn) => {
-    let cleanup = noop;
+    let teardown = noop;
     const runner = effect(() => {
-      cleanup();
-      cleanup = fn() || noop;
+      teardown();
+      teardown = fn() || noop;
     });
     return () => {
-      cleanup();
+      teardown();
       runner.effect.stop();
     };
   },

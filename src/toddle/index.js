@@ -42,10 +42,10 @@ export const signalFunctions = {
     s.set(t);
   },
   effect: (fn, deps) => {
-    let cleanupRun = noop;
+    let teardown = noop;
     const update = () => {
-      cleanupRun();
-      cleanupRun = fn() || noop;
+      teardown();
+      teardown = fn() || noop;
     };
     /**
      * @type {(()=>void)[]}
@@ -57,7 +57,7 @@ export const signalFunctions = {
       }
     });
     const stop = () => {
-      cleanupRun();
+      teardown();
       cleanup.forEach((cb) => {
         cb();
       });

@@ -33,14 +33,14 @@ export const signalFunctions = {
     s[1](/** @type {Exclude<Z, Function>} */ (t));
   },
   effect: (fn) => {
-    let dispose = noop;
-    createRoot((disposeFn) => {
-      dispose = disposeFn;
+    let teardown = noop;
+    createRoot((dispose) => {
+      teardown = dispose;
       createRenderEffect(() => {
         onCleanup(fn() || noop);
       });
     });
 
-    return dispose;
+    return teardown;
   },
 };
