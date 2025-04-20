@@ -19,7 +19,7 @@ install.on("close", async (code) => {
     );
     await writeFile(
       new URL("../src/toddle/signal.js", import.meta.url),
-      `// @ts-nocheck\n` + src
+      `// @ts-nocheck\n` + src.replace(/\/\/# sourceMappingURL=.+/, "")
     );
     await copyFile(
       new URL(
@@ -28,13 +28,13 @@ install.on("close", async (code) => {
       ),
       new URL("../src/toddle/signal.d.ts", import.meta.url)
     );
-    await copyFile(
-      new URL(
-        "../node_modules/@toddledev/runtime/dist/signal/signal.js.map",
-        import.meta.url
-      ),
-      new URL("../src/toddle/signal.js.map", import.meta.url)
-    );
+    // await copyFile(
+    //   new URL(
+    //     "../node_modules/@toddledev/runtime/dist/signal/signal.js.map",
+    //     import.meta.url
+    //   ),
+    //   new URL("../src/toddle/signal.js.map", import.meta.url)
+    // );
   } catch (error) {
     console.error(error);
   }

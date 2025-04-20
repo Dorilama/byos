@@ -1,7 +1,7 @@
 /**
- * @template {import("../src").HKT} SignalHKT
- * @template {import("../src").HKT} ComputedHKT
- * @param {import("../src").SignalFunctions<SignalHKT,ComputedHKT>} fn
+ * @template {import("..").HKT} SignalHKT
+ * @template {import("..").HKT} ComputedHKT
+ * @param {import("..").SignalFunctions<SignalHKT,ComputedHKT>} fn
  */
 function check(fn) {
   //@ts-expect-error
