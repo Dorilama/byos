@@ -9,6 +9,9 @@ import { testUseCounter } from "../test/counter";
 import { testEffectCleanup } from "../test/effectCleanup";
 import { testComputedCleanup } from "../test/computedCleanup";
 import { signalFunctions } from ".";
+import { configure } from "mobx";
+
+configure({ enforceActions: "never" });
 
 describe("mobx", () => {
   test("simpleSignal", () => {

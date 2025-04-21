@@ -1,7 +1,5 @@
 import { observable, computed, isObservable, autorun, configure } from "mobx";
 
-configure({ enforceActions: "never" });
-
 const noop = () => {};
 /**
  * @type {import(".").SFN}
