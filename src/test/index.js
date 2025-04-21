@@ -71,3 +71,17 @@ export const simpleEffect = (fn) => {
   expect(cb).not.toBeCalled();
   expect(cb2).not.toBeCalled();
 };
+
+/**
+ * @template {import("..").HKT} SignalHKT
+ * @template {import("..").HKT} ComputedHKT
+ * @param {import("..").SignalFunctions<SignalHKT,ComputedHKT>} fn
+ */
+export const simpleMaybeSignal = (fn) => {
+  const s = fn.signal(0);
+  const c = fn.computed(() => fn.toValue(s) + 1, [s]);
+  const v = 2;
+  expect(fn.toValue(s)).toBe(0);
+  expect(fn.toValue(c)).toBe(1);
+  expect(fn.toValue(v)).toBe(2);
+};

@@ -69,7 +69,12 @@ export const signalFunctions = {
 };`
           );
           await writeFile(test, `import { test, describe } from "vitest";
-import { simpleSignal, simpleComputed, simpleEffect } from "../test";
+import {
+  simpleSignal,
+  simpleComputed,
+  simpleEffect,
+  simpleMaybeSignal,
+} from "../test";
 import { testUseCounter } from "../test/counter";
 import { testEffectCleanup } from "../test/effectCleanup";
 import { testComputedCleanup } from "../test/computedCleanup";
@@ -85,6 +90,9 @@ describe("${name}", () => {
   test("simpleEffect", () => {
     simpleEffect(signalFunctions);
   });
+  test("simpleMaybeSignal", () => {
+    simpleMaybeSignal(signalFunctions);
+  });
   test("useCounter", () => {
     testUseCounter(signalFunctions);
   });
@@ -95,6 +103,7 @@ describe("${name}", () => {
     testComputedCleanup(signalFunctions);
   });
 });
+
 `);
         } catch (error) {
           const msg = error instanceof Error ? error.message : error;
