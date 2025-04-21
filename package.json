@@ -28,6 +28,10 @@
       "types": "./src/alien-signals/index.d.ts",
       "import": "./src/alien-signals/index.js"
     },
+    "./compostate": {
+      "types": "./src/compostate/index.d.ts",
+      "import": "./src/compostate/index.js"
+    },
     "./signia": {
       "types": "./src/signia/index.d.ts",
       "import": "./src/signia/index.js"
@@ -67,6 +71,7 @@
     "@vue/reactivity": "^3",
     "@webreflection/signal": "^2",
     "alien-signals": "^1",
+    "compostate": "^0.6.0-alpha.1",
     "fast-deep-equal": "^3",
     "signia": "^0.1",
     "solid-js": "^1",
@@ -84,6 +89,9 @@
       "optional": true
     },
     "alien-signals": {
+      "optional": true
+    },
+    "compostate": {
       "optional": true
     },
     "fast-deep-equal": {
