@@ -24,16 +24,18 @@ export interface SignalFunctions<
   SignalHKT extends HKT,
   ComputedHKT extends HKT
 > {
-  readonly signal: <T>(t: T) => Kind<SignalHKT, T>;
+  readonly signal: <T>(t: T, n?: string) => Kind<SignalHKT, T>;
   readonly computed: <T>(
     fn: () => T,
-    deps: MaybeSignal<SignalHKT, ComputedHKT, any>[]
+    deps: MaybeSignal<SignalHKT, ComputedHKT, any>[],
+    n?: string
   ) => Kind<ComputedHKT, T>;
   readonly computedCleanup: <T>(t: Kind<ComputedHKT, T>) => void;
   readonly toValue: <T>(t: MaybeSignal<SignalHKT, ComputedHKT, T>) => T;
   readonly setValue: <T>(s: Kind<SignalHKT, T>, t: T) => void;
   readonly effect: (
     fn: () => void | (() => void),
-    deps: MaybeSignal<SignalHKT, ComputedHKT, any>[]
+    deps: MaybeSignal<SignalHKT, ComputedHKT, any>[],
+    n?: string
   ) => () => void;
 }

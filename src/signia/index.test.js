@@ -1,0 +1,29 @@
+import { test, describe } from "vitest";
+import { simpleSignal, simpleComputed, simpleEffect } from "../test";
+import { testUseCounter } from "../test/counter";
+import { testEffectCleanup } from "../test/effectCleanup";
+import { testComputedCleanup } from "../test/computedCleanup";
+import { signalFunctions } from ".";
+
+describe("signia", () => {
+  test("simpleSignal", () => {
+    simpleSignal(signalFunctions);
+  });
+  test("simpleComputed", () => {
+    simpleComputed(signalFunctions);
+  });
+  test("simpleEffect", () => {
+    simpleEffect(signalFunctions);
+  });
+  // can't run because signia cannot change atoms during reaction cycle
+  // test("useCounter", () => {
+  //   testUseCounter(signalFunctions);
+  // });
+  test("testEffectCleanup", () => {
+    testEffectCleanup(signalFunctions);
+  });
+  // can't run because signia cannot change atoms during reaction cycle
+  // test("testComputedCleanup", () => {
+  //   testComputedCleanup(signalFunctions);
+  // });
+});

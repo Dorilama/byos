@@ -28,6 +28,10 @@
       "types": "./src/alien-signals/index.d.ts",
       "import": "./src/alien-signals/index.js"
     },
+    "./signia": {
+      "types": "./src/signia/index.d.ts",
+      "import": "./src/signia/index.js"
+    },
     "./solid-js": {
       "types": "./src/solid-js/index.d.ts",
       "import": "./src/solid-js/index.js"
@@ -64,6 +68,7 @@
     "@webreflection/signal": "^2",
     "alien-signals": "^1",
     "fast-deep-equal": "^3",
+    "signia": "^0.1",
     "solid-js": "^1",
     "usignal": "^0.9",
     "vue": "^3"
@@ -82,6 +87,9 @@
       "optional": true
     },
     "fast-deep-equal": {
+      "optional": true
+    },
+    "signia": {
       "optional": true
     },
     "solid-js": {

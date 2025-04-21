@@ -5,7 +5,7 @@ const noop = () => {};
  * @type {import(".").SFN}
  */
 export const signalFunctions = {
-  signal,
+  signal: (t) => signal(t),
   computed: (fn) => computed(fn),
   computedCleanup: noop,
   toValue: (t) => (t instanceof Signal ? t.valueOf() : t),
