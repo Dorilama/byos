@@ -36,6 +36,10 @@
       "types": "./src/mobx/index.d.ts",
       "import": "./src/mobx/index.js"
     },
+    "./oby": {
+      "types": "./src/oby/index.d.ts",
+      "import": "./src/oby/index.js"
+    },
     "./signia": {
       "types": "./src/signia/index.d.ts",
       "import": "./src/signia/index.js"
@@ -78,6 +82,7 @@
     "compostate": "^0.6.0-alpha.1",
     "fast-deep-equal": "^3",
     "mobx": "^6",
+    "oby": "^15",
     "signia": "^0.1",
     "solid-js": "^1",
     "usignal": "^0.9",
@@ -103,6 +108,9 @@
       "optional": true
     },
     "mobx": {
+      "optional": true
+    },
+    "oby": {
       "optional": true
     },
     "signia": {
