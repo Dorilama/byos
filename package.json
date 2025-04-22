@@ -12,6 +12,10 @@
       "types": "./src/index.d.ts",
       "import": "./src/index.js"
     },
+    "./@angular-core": {
+      "types": "./src/@angular-core/index.d.ts",
+      "import": "./src/@angular-core/index.js"
+    },
     "./@preact-signals-core": {
       "types": "./src/@preact-signals-core/index.d.ts",
       "import": "./src/@preact-signals-core/index.js"
@@ -60,10 +64,6 @@
       "types": "./src/usignal/index.d.ts",
       "import": "./src/usignal/index.js"
     },
-    "./valtio": {
-      "types": "./src/valtio/index.d.ts",
-      "import": "./src/valtio/index.js"
-    },
     "./valtio-reactive": {
       "types": "./src/valtio-reactive/index.d.ts",
       "import": "./src/valtio-reactive/index.js"
@@ -91,6 +91,9 @@
     "publish-package": "npm publish --access public"
   },
   "peerDependencies": {
+    "@angular/core": "^19",
+    "@angular/compiler": "^19",
+    "@angular/platform-browser-dynamic": "^19",
     "@preact/signals-core": "^1",
     "@reactively/core": "^0.0.8",
     "@vue/reactivity": "^3",
@@ -98,6 +101,7 @@
     "alien-signals": "^1",
     "compostate": "^0.6.0-alpha.1",
     "fast-deep-equal": "^3",
+    "linkedom": "^0.18",
     "mobx": "^6",
     "oby": "^15",
     "s-js": "^0.4",
@@ -106,9 +110,19 @@
     "usignal": "^0.9",
     "valtio": "^2",
     "valtio-reactive": "^0.1",
-    "vue": "^3"
+    "vue": "^3",
+    "zone.js": "^0.15"
   },
   "peerDependenciesMeta": {
+    "@angular/core": {
+      "optional": true
+    },
+    "@angular/compiler": {
+      "optional": true
+    },
+    "@angular/platform-browser-dynamic": {
+      "optional": true
+    },
     "@preact/signals-core": {
       "optional": true
     },
@@ -128,6 +142,9 @@
       "optional": true
     },
     "fast-deep-equal": {
+      "optional": true
+    },
+    "linkedom": {
       "optional": true
     },
     "mobx": {
@@ -155,6 +172,9 @@
       "optional": true
     },
     "vue": {
+      "optional": true
+    },
+    "zone.js": {
       "optional": true
     }
   },
