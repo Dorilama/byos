@@ -10,7 +10,7 @@ import { testUseCounter } from "../test/counter";
 import { testEffectCleanup } from "../test/effectCleanup";
 import { testComputedCleanup } from "../test/computedCleanup";
 
-describe.only("solid-js", () => {
+describe("solid-js", () => {
   test("simpleSignal", () => {
     simpleSignal(signalFunctions);
   });

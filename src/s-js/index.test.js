@@ -11,7 +11,7 @@ import { testComputedCleanup } from "../test/computedCleanup";
 import { signalFunctions } from ".";
 import S from "s-js";
 
-describe.only("s-js", () => {
+describe("s-js", () => {
   test("simpleSignal", () => {
     simpleSignal(signalFunctions);
   });

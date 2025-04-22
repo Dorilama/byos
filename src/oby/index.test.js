@@ -10,7 +10,7 @@ import { testEffectCleanup } from "../test/effectCleanup";
 import { testComputedCleanup } from "../test/computedCleanup";
 import { signalFunctions } from ".";
 
-describe.only("oby", () => {
+describe("oby", () => {
   test("simpleSignal", () => {
     simpleSignal(signalFunctions);
   });

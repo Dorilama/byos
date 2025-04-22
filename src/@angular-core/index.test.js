@@ -36,25 +36,68 @@ describe("@angular/core", () => {
     // @ts-ignore
     delete global.window;
   });
-  test("simpleSignal", () => {
-    simpleSignal(signalFunctions);
+  test("simpleSignal", async () => {
+    await new Promise((res, rej) => {
+      TestBed.runInInjectionContext(() => {
+        try {
+          simpleSignal(signalFunctions);
+          res("ok");
+        } catch (error) {
+          rej(error);
+        }
+      });
+    });
   });
-  test("simpleComputed", () => {
-    simpleComputed(signalFunctions);
+  test("simpleComputed", async () => {
+    await new Promise((res, rej) => {
+      TestBed.runInInjectionContext(() => {
+        try {
+          simpleComputed(signalFunctions);
+          res("ok");
+        } catch (error) {
+          rej(error);
+        }
+      });
+    });
   });
   test("simpleEffect", async () => {
-    await simpleEffect(signalFunctions);
+    await new Promise((res, rej) => {
+      TestBed.runInInjectionContext(() => {
+        simpleEffect(signalFunctions).then(res).catch(rej);
+      });
+    });
   });
-  test("simpleMaybeSignal", () => {
-    simpleMaybeSignal(signalFunctions);
+  test("simpleMaybeSignal", async () => {
+    await new Promise((res, rej) => {
+      TestBed.runInInjectionContext(() => {
+        try {
+          simpleMaybeSignal(signalFunctions);
+          res("ok");
+        } catch (error) {
+          rej(error);
+        }
+      });
+    });
   });
   test("useCounter", async () => {
-    await testUseCounter(signalFunctions);
+    await new Promise((res, rej) => {
+      TestBed.runInInjectionContext(() => {
+        testUseCounter(signalFunctions).then(res).catch(rej);
+      });
+    });
   });
   test("testEffectCleanup", async () => {
-    await testEffectCleanup(signalFunctions);
+    await new Promise((res, rej) => {
+      TestBed.runInInjectionContext(() => {
+        testEffectCleanup(signalFunctions).then(res).catch(rej);
+      });
+    });
   });
   test("testComputedCleanup", async () => {
-    await testComputedCleanup(signalFunctions);
+    await new Promise((res, rej) => {
+      TestBed.runInInjectionContext(() => {
+        testComputedCleanup(signalFunctions).then(res).catch(rej);
+      });
+    });
   });
 });
