@@ -55,7 +55,7 @@ describe.only("s-js", () => {
       });
     });
   });
-  test.skip("useCounter", async () => {
+  test("useCounter", async () => {
     await new Promise((res, rej) => {
       S.root((dispose) => {
         testUseCounter(signalFunctions)
@@ -67,7 +67,7 @@ describe.only("s-js", () => {
       });
     });
   });
-  test.skip("testEffectCleanup", async () => {
+  test("testEffectCleanup", async () => {
     await new Promise((res, rej) => {
       S.root((dispose) => {
         testEffectCleanup(signalFunctions)
@@ -79,7 +79,7 @@ describe.only("s-js", () => {
       });
     });
   });
-  test.skip("testComputedCleanup", async () => {
+  test("testComputedCleanup", async () => {
     await new Promise((res, rej) => {
       S.root((dispose) => {
         testComputedCleanup(signalFunctions)

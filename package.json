@@ -60,6 +60,14 @@
       "types": "./src/usignal/index.d.ts",
       "import": "./src/usignal/index.js"
     },
+    "./valtio": {
+      "types": "./src/valtio/index.d.ts",
+      "import": "./src/valtio/index.js"
+    },
+    "./valtio-reactive": {
+      "types": "./src/valtio-reactive/index.d.ts",
+      "import": "./src/valtio-reactive/index.js"
+    },
     "./vue": {
       "types": "./src/vue/index.d.ts",
       "import": "./src/vue/index.js"
@@ -96,6 +104,8 @@
     "signia": "^0.1",
     "solid-js": "^1",
     "usignal": "^0.9",
+    "valtio": "^2",
+    "valtio-reactive": "^0.1",
     "vue": "^3"
   },
   "peerDependenciesMeta": {
@@ -136,6 +146,12 @@
       "optional": true
     },
     "usignal": {
+      "optional": true
+    },
+    "valtio": {
+      "optional": true
+    },
+    "valtio-reactive": {
       "optional": true
     },
     "vue": {
