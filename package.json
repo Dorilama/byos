@@ -44,6 +44,10 @@
       "types": "./src/oby/index.d.ts",
       "import": "./src/oby/index.js"
     },
+    "./s-js": {
+      "types": "./src/s-js/index.d.ts",
+      "import": "./src/s-js/index.js"
+    },
     "./signia": {
       "types": "./src/signia/index.d.ts",
       "import": "./src/signia/index.js"
@@ -88,6 +92,7 @@
     "fast-deep-equal": "^3",
     "mobx": "^6",
     "oby": "^15",
+    "s-js": "^0.4",
     "signia": "^0.1",
     "solid-js": "^1",
     "usignal": "^0.9",
@@ -119,6 +124,9 @@
       "optional": true
     },
     "oby": {
+      "optional": true
+    },
+    "s-js": {
       "optional": true
     },
     "signia": {
