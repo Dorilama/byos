@@ -26,10 +26,10 @@ describe.only("oby", () => {
   test("useCounter", async () => {
     await testUseCounter(signalFunctions);
   });
-  test("testEffectCleanup", () => {
-    testEffectCleanup(signalFunctions);
+  test("testEffectCleanup", async () => {
+    await testEffectCleanup(signalFunctions);
   });
-  test("testComputedCleanup", () => {
-    testComputedCleanup(signalFunctions);
+  test("testComputedCleanup", async () => {
+    await testComputedCleanup(signalFunctions);
   });
 });

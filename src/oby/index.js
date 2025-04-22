@@ -16,7 +16,7 @@ export const signalFunctions = {
     $.effect(
       () => {
         $.cleanup(fn() || noop);
-      },
-      { sync: true }
+      }
+      // { sync: true }
     ),
 };

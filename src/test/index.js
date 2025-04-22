@@ -5,7 +5,7 @@ import { expect, vi } from "vitest";
  * @param {number} [milliseconds]
  * @returns
  */
-const sleep = (milliseconds = 1) => {
+export const sleep = (milliseconds = 1) => {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 };
 
@@ -40,36 +40,53 @@ export const simpleComputed = (fn) => {
  * @param {import("..").SignalFunctions<SignalHKT,ComputedHKT>} fn
  */
 export const simpleEffect = (fn) => {
-  const s = fn.signal(0);
-  const cb = vi.fn();
-  cb.mockName("simpleEffectCallback");
-  const cb2 = vi.fn();
-  cb2.mockName("simpleEffectTeardown");
-  const stop = fn.effect(() => {
-    fn.toValue(s);
-    cb();
-    return cb2;
-  }, [s]);
-  expect(cb).toBeCalled();
-  expect(cb2).not.toBeCalled();
-  cb.mockClear();
-  cb2.mockClear();
-  fn.setValue(s, 0);
-  expect(cb).not.toBeCalled();
-  expect(cb2).not.toBeCalled();
-  fn.setValue(s, 1);
-  expect(cb).toBeCalled();
-  expect(cb2).toBeCalled();
-  cb.mockClear();
-  cb2.mockClear();
-  stop();
-  expect(cb).not.toBeCalled();
-  expect(cb2).toBeCalled();
-  cb.mockClear();
-  cb2.mockClear();
-  fn.setValue(s, 2);
-  expect(cb).not.toBeCalled();
-  expect(cb2).not.toBeCalled();
+  return new Promise(async (res, rej) => {
+    try {
+      const s = fn.signal(0);
+      const cb = vi.fn();
+      cb.mockName("simpleEffectCallback");
+      const cb2 = vi.fn();
+      cb2.mockName("simpleEffectTeardown");
+      const stop = fn.effect(() => {
+        fn.toValue(s);
+        cb();
+        return cb2;
+      }, [s]);
+      await sleep();
+
+      expect(cb).toBeCalled();
+      expect(cb2).not.toBeCalled();
+      cb.mockClear();
+      cb2.mockClear();
+      fn.setValue(s, 0);
+      await sleep();
+
+      expect(cb).not.toBeCalled();
+      expect(cb2).not.toBeCalled();
+      fn.setValue(s, 1);
+      await sleep();
+
+      expect(cb).toBeCalled();
+      expect(cb2).toBeCalled();
+      cb.mockClear();
+      cb2.mockClear();
+      stop();
+      await sleep();
+
+      expect(cb).not.toBeCalled();
+      expect(cb2).toBeCalled();
+      cb.mockClear();
+      cb2.mockClear();
+      fn.setValue(s, 2);
+      await sleep();
+
+      expect(cb).not.toBeCalled();
+      expect(cb2).not.toBeCalled();
+      res("ok");
+    } catch (error) {
+      rej(error);
+    }
+  });
 };
 
 /**

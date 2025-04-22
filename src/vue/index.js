@@ -27,8 +27,8 @@ export const signalFunctions = {
           onScopeDispose(teardown);
         }
         onCleanup(teardown);
-      },
-      { flush: "sync" }
+      }
+      // { flush: "sync" }
     );
   },
 };

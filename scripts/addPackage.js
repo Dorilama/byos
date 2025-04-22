@@ -87,23 +87,22 @@ describe("${name}", () => {
   test("simpleComputed", () => {
     simpleComputed(signalFunctions);
   });
-  test("simpleEffect", () => {
-    simpleEffect(signalFunctions);
+  test("simpleEffect", async () => {
+    await simpleEffect(signalFunctions);
   });
   test("simpleMaybeSignal", () => {
     simpleMaybeSignal(signalFunctions);
   });
-  test("useCounter", () => {
-    testUseCounter(signalFunctions);
+  test("useCounter", async () => {
+    await testUseCounter(signalFunctions);
   });
-  test("testEffectCleanup", () => {
-    testEffectCleanup(signalFunctions);
+  test("testEffectCleanup", async () => {
+    await testEffectCleanup(signalFunctions);
   });
-  test("testComputedCleanup", () => {
-    testComputedCleanup(signalFunctions);
+  test("testComputedCleanup", async () => {
+    await testComputedCleanup(signalFunctions);
   });
 });
-
 `);
         } catch (error) {
           const msg = error instanceof Error ? error.message : error;

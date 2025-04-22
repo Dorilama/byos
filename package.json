@@ -16,6 +16,10 @@
       "types": "./src/@preact-signals-core/index.d.ts",
       "import": "./src/@preact-signals-core/index.js"
     },
+    "./@reactively-core": {
+      "types": "./src/@reactively-core/index.d.ts",
+      "import": "./src/@reactively-core/index.js"
+    },
     "./@vue-reactivity": {
       "types": "./src/@vue-reactivity/index.d.ts",
       "import": "./src/@vue-reactivity/index.js"
@@ -76,6 +80,7 @@
   },
   "peerDependencies": {
     "@preact/signals-core": "^1",
+    "@reactively/core": "^0.0.8",
     "@vue/reactivity": "^3",
     "@webreflection/signal": "^2",
     "alien-signals": "^1",
@@ -90,6 +95,9 @@
   },
   "peerDependenciesMeta": {
     "@preact/signals-core": {
+      "optional": true
+    },
+    "@reactively/core": {
       "optional": true
     },
     "@vue/reactivity": {

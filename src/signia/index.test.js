@@ -17,21 +17,21 @@ describe("signia", () => {
   test("simpleComputed", () => {
     simpleComputed(signalFunctions);
   });
-  test("simpleEffect", () => {
-    simpleEffect(signalFunctions);
+  test("simpleEffect", async () => {
+    await simpleEffect(signalFunctions);
   });
   test("simpleMaybeSignal", () => {
     simpleMaybeSignal(signalFunctions);
   });
   // can't run because signia cannot change atoms during reaction cycle
-  // test("useCounter", () => {
-  //   testUseCounter(signalFunctions);
+  // test("useCounter", async () => {
+  //   await testUseCounter(signalFunctions);
   // });
-  test("testEffectCleanup", () => {
-    testEffectCleanup(signalFunctions);
+  test("testEffectCleanup", async () => {
+    await testEffectCleanup(signalFunctions);
   });
   // can't run because signia cannot change atoms during reaction cycle
-  // test("testComputedCleanup", () => {
-  //   testComputedCleanup(signalFunctions);
+  // test("testComputedCleanup", async () => {
+  //   await testComputedCleanup(signalFunctions);
   // });
 });
