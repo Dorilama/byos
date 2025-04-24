@@ -60,6 +60,10 @@
       "types": "./src/solid-js/index.d.ts",
       "import": "./src/solid-js/index.js"
     },
+    "./svelte": {
+      "types": "./src/svelte/index.d.ts",
+      "import": "./src/svelte/index.js"
+    },
     "./usignal": {
       "types": "./src/usignal/index.d.ts",
       "import": "./src/usignal/index.js"
@@ -91,22 +95,25 @@
     "publish-package": "npm publish --access public"
   },
   "peerDependencies": {
-    "@angular/core": "^19",
     "@angular/compiler": "^19",
+    "@angular/core": "^19",
     "@angular/platform-browser-dynamic": "^19",
     "@preact/signals-core": "^1",
     "@reactively/core": "^0.0.8",
+    "@sveltejs/vite-plugin-svelte": "^5",
     "@vue/reactivity": "^3",
     "@webreflection/signal": "^2",
     "alien-signals": "^1",
     "compostate": "^0.6.0-alpha.1",
     "fast-deep-equal": "^3",
+    "happy-dom": "^17",
     "linkedom": "^0.18",
     "mobx": "^6",
     "oby": "^15",
     "s-js": "^0.4",
     "signia": "^0.1",
     "solid-js": "^1",
+    "svelte": "^5",
     "usignal": "^0.9",
     "valtio": "^2",
     "valtio-reactive": "^0.1",
@@ -114,10 +121,10 @@
     "zone.js": "^0.15"
   },
   "peerDependenciesMeta": {
-    "@angular/core": {
+    "@angular/compiler": {
       "optional": true
     },
-    "@angular/compiler": {
+    "@angular/core": {
       "optional": true
     },
     "@angular/platform-browser-dynamic": {
@@ -127,6 +134,9 @@
       "optional": true
     },
     "@reactively/core": {
+      "optional": true
+    },
+    "@sveltejs/vite-plugin-svelte": {
       "optional": true
     },
     "@vue/reactivity": {
@@ -142,6 +152,9 @@
       "optional": true
     },
     "fast-deep-equal": {
+      "optional": true
+    },
+    "happy-dom": {
       "optional": true
     },
     "linkedom": {
@@ -160,6 +173,9 @@
       "optional": true
     },
     "solid-js": {
+      "optional": true
+    },
+    "svelte": {
       "optional": true
     },
     "usignal": {
