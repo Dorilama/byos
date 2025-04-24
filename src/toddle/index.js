@@ -13,6 +13,7 @@ const noop = () => {};
  */
 export const signalFunctions = {
   signal,
+  shallow: signal,
   computed: (fn, deps) => {
     const s = signal(fn());
     const update = () => {

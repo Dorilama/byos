@@ -7,6 +7,7 @@ const noop = () => {};
  */
 export const signalFunctions = {
   signal: (t, n) => new Reactive(t, false, n),
+  shallow: (t, n) => new Reactive(t, false, n),
   computed: (fn, _, n) => new Reactive(fn, false, n),
   computedCleanup: noop,
   toValue: (t) => (t instanceof Reactive ? t.get() : t),

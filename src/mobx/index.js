@@ -1,12 +1,13 @@
-import { observable, computed, isObservable, autorun, configure } from "mobx";
+import { observable, computed, isObservable, autorun } from "mobx";
 
 const noop = () => {};
 /**
  * @type {import(".").SFN}
  */
 export const signalFunctions = {
-  signal: (t) => observable.box(t),
-  computed: (t) => computed(t),
+  signal: (t, n) => observable.box(t, { name: n }),
+  shallow: (t, n) => observable.box(t, { name: n, deep: false }),
+  computed: (t, _, n) => computed(t, { name: n }),
   computedCleanup: noop,
   /**
    * @template T

@@ -5,6 +5,7 @@ import {
   toValue,
   getCurrentScope,
   onScopeDispose,
+  shallowRef,
 } from "vue";
 
 const noop = () => {};
@@ -13,6 +14,7 @@ const noop = () => {};
  */
 export const signalFunctions = {
   signal: ref,
+  shallow: shallowRef,
   computed: (fn) => computed(fn),
   computedCleanup: noop,
   toValue: (t) => toValue(t),

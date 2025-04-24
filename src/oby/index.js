@@ -6,6 +6,7 @@ const noop = () => {};
  */
 export const signalFunctions = {
   signal: (t) => $(t),
+  shallow: (t) => $(t),
   computed: (fn) => $.memo(fn),
   computedCleanup: noop,
   toValue: (t) => ($.isObservable(t) ? t() : t),

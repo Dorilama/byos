@@ -13,6 +13,7 @@ const isSignal = (t) => t instanceof Signal;
  */
 export const signalFunctions = {
   signal,
+  shallow: signal,
   computed: (fn) => computed(fn),
   computedCleanup: noop,
   toValue: (t) => (isSignal(t) ? t.value : t),

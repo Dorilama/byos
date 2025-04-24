@@ -59,6 +59,7 @@ const noop = () => {};
 */
 export const signalFunctions = {
   signal,
+  shallow: signal,
   computed,
   computedCleanup: noop,
   toValue: (t) => t,
@@ -74,11 +75,13 @@ import {
   simpleComputed,
   simpleEffect,
   simpleMaybeSignal,
+  simpleShallow,
 } from "../test";
 import { testUseCounter } from "../test/counter";
 import { testEffectCleanup } from "../test/effectCleanup";
 import { testComputedCleanup } from "../test/computedCleanup";
 import { signalFunctions } from ".";
+import { toValue } from "vue";
 
 describe("${name}", () => {
   test("simpleSignal", () => {
@@ -89,6 +92,9 @@ describe("${name}", () => {
   });
   test("simpleEffect", async () => {
     await simpleEffect(signalFunctions);
+  });
+  test("simpleShallow", () => {
+    simpleShallow(signalFunctions, (s,n)=>{s.value.a = n;});
   });
   test("simpleMaybeSignal", () => {
     simpleMaybeSignal(signalFunctions);

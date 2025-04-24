@@ -1,4 +1,4 @@
-import { ref, computed, effect, toValue } from "@vue/reactivity";
+import { ref, computed, effect, toValue, shallowRef } from "@vue/reactivity";
 
 const noop = () => {};
 /**
@@ -6,6 +6,7 @@ const noop = () => {};
  */
 export const signalFunctions = {
   signal: ref,
+  shallow: shallowRef,
   computed: (fn) => computed(fn),
   computedCleanup: noop,
   toValue: (t) => toValue(t),

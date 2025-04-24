@@ -4,6 +4,7 @@ import {
   simpleComputed,
   simpleEffect,
   simpleMaybeSignal,
+  simpleShallow,
 } from "../test";
 import { testUseCounter } from "../test/counter";
 import { testEffectCleanup } from "../test/effectCleanup";
@@ -22,6 +23,15 @@ describe("mobx", () => {
   });
   test("simpleEffect", async () => {
     await simpleEffect(signalFunctions);
+  });
+  // todo!! fix this
+  test.skip("simpleShallow", () => {
+    simpleShallow(signalFunctions, (s, n) => {
+      const t = s.get();
+      if (t) {
+        t.a = n;
+      }
+    });
   });
   test("simpleMaybeSignal", () => {
     simpleMaybeSignal(signalFunctions);

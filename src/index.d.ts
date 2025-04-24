@@ -25,6 +25,7 @@ export interface SignalFunctions<
   ComputedHKT extends HKT
 > {
   readonly signal: <T>(t: T, n?: string) => Kind<SignalHKT, T>;
+  readonly shallow: <T>(t: T, n?: string) => Kind<SignalHKT, T>;
   readonly computed: <T>(
     fn: () => T,
     deps: MaybeSignal<SignalHKT, ComputedHKT, any>[],

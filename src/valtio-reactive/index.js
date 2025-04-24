@@ -1,4 +1,4 @@
-import { proxy } from "valtio/vanilla";
+import { proxy, ref } from "valtio/vanilla";
 import { computed, effect } from "valtio-reactive";
 
 const noop = () => {};
@@ -7,6 +7,12 @@ const noop = () => {};
  */
 export const signalFunctions = {
   signal: (t) => proxy({ value: t }),
+  shallow: (t) => {
+    if (typeof t === "object" && t) {
+      return proxy({ value: ref(t) });
+    }
+    return proxy({ value: t });
+  },
   computed: (fn) => computed({ value: fn }),
   computedCleanup: noop,
   toValue: (t) => (t && typeof t === "object" && "value" in t ? t.value : t),

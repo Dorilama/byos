@@ -11,7 +11,7 @@ declare class Signal<T> {
 
 declare class Computed<T> {
   constructor(fn: () => T);
-  get value(): () => T;
+  get value(): T;
   __s: true;
 }
 

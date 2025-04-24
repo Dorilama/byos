@@ -8,22 +8,34 @@ const noop = () => {};
  */
 export const signalFunctions = {
   signal: (t) => {
-    const s = $state({ current: t });
+    let s = $state(t);
     return {
       get value() {
-        return s.current;
+        return s;
       },
       set value(t) {
-        s.current = t;
+        s = t;
+      },
+      __s: true,
+    };
+  },
+  shallow: (t) => {
+    let s = $state.raw(t);
+    return {
+      get value() {
+        return s;
+      },
+      set value(t) {
+        s = t;
       },
       __s: true,
     };
   },
   computed: (fn) => {
-    const s = $state({ current: fn });
+    let s = $derived.by(fn);
     return {
       get value() {
-        return s.current;
+        return s;
       },
       __s: true,
     };
