@@ -11,7 +11,7 @@ import { testEffectCleanup } from "../test/effectCleanup";
 import { testComputedCleanup } from "../test/computedCleanup";
 import { signalFunctions } from "./index.svelte";
 
-describe.only("svelte", () => {
+describe("svelte", () => {
   test("simpleSignal", () => {
     simpleSignal(signalFunctions);
   });

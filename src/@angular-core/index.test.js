@@ -1,4 +1,5 @@
-import { test, describe, beforeAll, afterAll } from "vitest";
+// @vitest-environment happy-dom
+import { test, describe, beforeAll } from "vitest";
 import {
   simpleSignal,
   simpleComputed,
@@ -15,26 +16,13 @@ import {
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting,
 } from "@angular/platform-browser-dynamic/testing";
-import { parseHTML } from "linkedom";
 
 describe("@angular/core", () => {
   beforeAll(async () => {
-    const { document, window } = parseHTML(
-      "<html><head><script></script></head><body></body></html>"
-    );
-    global.document = document;
-    global.window = window;
-
     TestBed.initTestEnvironment(
       BrowserDynamicTestingModule,
       platformBrowserDynamicTesting()
     );
-  });
-  afterAll(() => {
-    // @ts-ignore
-    delete global.document;
-    // @ts-ignore
-    delete global.window;
   });
   test("simpleSignal", async () => {
     await new Promise((res, rej) => {

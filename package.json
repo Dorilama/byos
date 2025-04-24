@@ -107,7 +107,6 @@
     "compostate": "^0.6.0-alpha.1",
     "fast-deep-equal": "^3",
     "happy-dom": "^17",
-    "linkedom": "^0.18",
     "mobx": "^6",
     "oby": "^15",
     "s-js": "^0.4",
@@ -155,9 +154,6 @@
       "optional": true
     },
     "happy-dom": {
-      "optional": true
-    },
-    "linkedom": {
       "optional": true
     },
     "mobx": {
