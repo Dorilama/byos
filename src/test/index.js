@@ -110,12 +110,29 @@ export const simpleMaybeSignal = (fn) => {
  * @param {(s: import("..").Kind<SignalHKT,{a:number}>, v: number)=>void} mutate
  */
 export const simpleShallow = (fn, mutate) => {
-  const s = fn.shallow({ a: 0 });
+  const s = fn.signal({ a: 0 });
   const c = fn.computed(() => fn.toValue(s).a + 1, [s]);
   expect(fn.toValue(s).a).toBe(0);
   expect(fn.toValue(c)).toBe(1);
   mutate(s, 3);
   expect(fn.toValue(c)).toBe(1);
+  fn.setValue(s, { a: 2 });
+  expect(fn.toValue(c)).toBe(3);
+};
+
+/**
+ * @template {import("..").HKT} SignalHKT
+ * @template {import("..").HKT} ComputedHKT
+ * @param {import("..").SignalFunctions<SignalHKT,ComputedHKT>} fn
+ * @param {(s: import("..").Kind<SignalHKT,{a:number}>, v: number)=>void} mutate
+ */
+export const simpleDeep = (fn, mutate) => {
+  const s = fn.signal({ a: 0 }, { deep: true });
+  const c = fn.computed(() => fn.toValue(s).a + 1, [s]);
+  expect(fn.toValue(s).a).toBe(0);
+  expect(fn.toValue(c)).toBe(1);
+  mutate(s, 3);
+  expect(fn.toValue(c)).toBe(4);
   fn.setValue(s, { a: 2 });
   expect(fn.toValue(c)).toBe(3);
 };

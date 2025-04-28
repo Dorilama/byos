@@ -4,7 +4,6 @@ import { Signal, signal, computed, effect } from "@webreflection/signal";
  */
 export const signalFunctions = {
   signal,
-  shallow: signal,
   computed: (fn) => computed(fn),
   computedCleanup: (t) => {
     // @ts-ignore

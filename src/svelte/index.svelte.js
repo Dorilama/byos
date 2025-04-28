@@ -7,19 +7,19 @@ const noop = () => {};
  * @type {import(".").SFN}
  */
 export const signalFunctions = {
-  signal: (t) => {
-    let s = $state(t);
-    return {
-      get value() {
-        return s;
-      },
-      set value(t) {
-        s = t;
-      },
-      __s: true,
-    };
-  },
-  shallow: (t) => {
+  signal: (t, opt) => {
+    if (opt?.deep) {
+      let s = $state(t);
+      return {
+        get value() {
+          return s;
+        },
+        set value(t) {
+          s = t;
+        },
+        __s: true,
+      };
+    }
     let s = $state.raw(t);
     return {
       get value() {

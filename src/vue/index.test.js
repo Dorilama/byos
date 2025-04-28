@@ -5,6 +5,7 @@ import {
   simpleEffect,
   simpleMaybeSignal,
   simpleShallow,
+  simpleDeep,
 } from "../test";
 import { testUseCounter } from "../test/counter";
 import { testEffectCleanup } from "../test/effectCleanup";
@@ -23,6 +24,11 @@ describe("vue", () => {
   });
   test("simpleShallow", () => {
     simpleShallow(signalFunctions, (s, n) => {
+      s.value.a = n;
+    });
+  });
+  test("simpleDeep", () => {
+    simpleDeep(signalFunctions, (s, n) => {
       s.value.a = n;
     });
   });

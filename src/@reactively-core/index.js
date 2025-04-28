@@ -6,21 +6,20 @@ const noop = () => {};
  * @type {import(".").SFN}
  */
 export const signalFunctions = {
-  signal: (t, n) => new Reactive(t, false, n),
-  shallow: (t, n) => new Reactive(t, false, n),
-  computed: (fn, _, n) => new Reactive(fn, false, n),
+  signal: (t, opt) => new Reactive(t, false, opt?.name),
+  computed: (fn, _, opt) => new Reactive(fn, false, opt?.name),
   computedCleanup: noop,
   toValue: (t) => (t instanceof Reactive ? t.get() : t),
   setValue: (s, t) => {
     s.set(t);
   },
-  effect: (fn, _, n) => {
+  effect: (fn, _, opt) => {
     const e = new Reactive(
       () => {
         onCleanup(fn() || noop);
       },
       true,
-      n
+      opt?.name
     );
     return () => {
       e.cleanups.forEach((c) => c(e.value));

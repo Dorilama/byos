@@ -4,6 +4,7 @@ import {
   simpleComputed,
   simpleEffect,
   simpleMaybeSignal,
+  simpleShallow,
 } from "../test";
 import { testUseCounter } from "../test/counter";
 import { testEffectCleanup } from "../test/effectCleanup";
@@ -19,6 +20,12 @@ describe("compostate", () => {
   });
   test("simpleEffect", async () => {
     await simpleEffect(signalFunctions);
+  });
+  // todo!!! fix this
+  test.skip("simpleShallow", () => {
+    simpleShallow(signalFunctions, (s, n) => {
+      s().a = n;
+    });
   });
   test("simpleMaybeSignal", () => {
     simpleMaybeSignal(signalFunctions);

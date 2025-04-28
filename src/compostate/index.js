@@ -10,7 +10,6 @@ const noop = () => {};
  */
 export const signalFunctions = {
   signal: (t) => atom(t),
-  shallow: (t) => atom(t),
   computed: (fn) => computed(fn),
   computedCleanup: noop,
   toValue: (t) => (isFunction(t) ? t() : t),

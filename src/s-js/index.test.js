@@ -4,6 +4,7 @@ import {
   simpleComputed,
   simpleEffect,
   simpleMaybeSignal,
+  simpleShallow,
 } from "../test";
 import { testUseCounter } from "../test/counter";
 import { testEffectCleanup } from "../test/effectCleanup";
@@ -39,6 +40,11 @@ describe("s-js", () => {
             dispose();
           });
       });
+    });
+  });
+  test("simpleShallow", () => {
+    simpleShallow(signalFunctions, (s, n) => {
+      s().a = n;
     });
   });
   test("simpleMaybeSignal", async () => {

@@ -15,6 +15,9 @@ export type Kind<F extends HKT, T> = F extends {
       readonly _T: () => T;
     };
 
+/**
+ * Value or signal or computed
+ */
 export type MaybeSignal<SignalHKT extends HKT, ComputedHKT extends HKT, T> =
   | T
   | Kind<SignalHKT, T>
@@ -24,19 +27,69 @@ export interface SignalFunctions<
   SignalHKT extends HKT,
   ComputedHKT extends HKT
 > {
-  readonly signal: <T>(t: T, n?: string) => Kind<SignalHKT, T>;
-  readonly shallow: <T>(t: T, n?: string) => Kind<SignalHKT, T>;
+  /**
+   * Creates a writable signal.
+   * It should default to a shallow signal **if supported** by the library.
+   *
+   * @param initialValue the initial value of the signal
+   * @param options
+   * @property name - used to aid debugging in some libraries
+   * @property deep - create a deeply reactive signal **if supported** by the library
+   */
+  readonly signal: <T>(
+    initialValue: T,
+    options?: { name?: string; deep?: boolean }
+  ) => Kind<SignalHKT, T>;
+
+  /**
+   * Creates a read-only signal computed by a function.
+   *
+   * @param fn the function that computes the signal value. runs every time dependencies change
+   * @param deps explicit array of dependencies. needed by libraries without automatic tracking
+   * @param options
+   * @property name - used to aid debugging in some libraries
+   */
   readonly computed: <T>(
     fn: () => T,
     deps: MaybeSignal<SignalHKT, ComputedHKT, any>[],
-    n?: string
+    options?: { name?: string }
   ) => Kind<ComputedHKT, T>;
-  readonly computedCleanup: <T>(t: Kind<ComputedHKT, T>) => void;
-  readonly toValue: <T>(t: MaybeSignal<SignalHKT, ComputedHKT, T>) => T;
-  readonly setValue: <T>(s: Kind<SignalHKT, T>, t: T) => void;
+
+  /**
+   * Stops computed signal computation.
+   *
+   * @param signal the computed signal to stop
+   */
+  readonly computedCleanup: <T>(signal: Kind<ComputedHKT, T>) => void;
+
+  /**
+   * Normalizes values, signals and computed to values.
+   *
+   * @param maybeSignal value, signal or computed
+   */
+  readonly toValue: <T>(
+    maybeSignal: MaybeSignal<SignalHKT, ComputedHKT, T>
+  ) => T;
+
+  /**
+   * Sets the value of the signal. The whole signal is updated, no partial deep updates.
+   *
+   * @param signal the signal to update
+   * @param value the new value to assign
+   */
+  readonly setValue: <T>(signal: Kind<SignalHKT, T>, value: T) => void;
+
+  /**
+   * Runs a function and re-runs it when the dependencies change.
+   *
+   * @param fn the function to run
+   * @param deps explicit array of dependencies. needed by libraries without automatic tracking
+   * @param options
+   * @property name - used to aid debugging in some libraries
+   */
   readonly effect: (
     fn: () => void | (() => void),
     deps: MaybeSignal<SignalHKT, ComputedHKT, any>[],
-    n?: string
+    options?: { name?: string }
   ) => () => void;
 }

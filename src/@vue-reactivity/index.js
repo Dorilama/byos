@@ -1,12 +1,22 @@
-import { ref, computed, effect, toValue, shallowRef } from "@vue/reactivity";
+import { ref, shallowRef, computed, effect, toValue } from "@vue/reactivity";
 
 const noop = () => {};
 /**
  * @type {import(".").SFN}
  */
 export const signalFunctions = {
-  signal: ref,
-  shallow: shallowRef,
+  /**
+   * @template T
+   * @param {T} t
+   * @param {{deep?: boolean}} [opt]
+   * @returns
+   */
+  signal: (t, opt) => {
+    if (opt?.deep) {
+      return /** @type {import("vue").Ref<T>} */ (ref(t));
+    }
+    return shallowRef(t);
+  },
   computed: (fn) => computed(fn),
   computedCleanup: noop,
   toValue: (t) => toValue(t),

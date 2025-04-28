@@ -5,9 +5,8 @@ const noop = () => {};
  * @type {import(".").SFN}
  */
 export const signalFunctions = {
-  signal: (t, n) => observable.box(t, { name: n }),
-  shallow: (t, n) => observable.box(t, { name: n, deep: false }),
-  computed: (t, _, n) => computed(t, { name: n }),
+  signal: (t, opt) => observable.box(t, { name: opt?.name, deep: opt?.deep }),
+  computed: (t, _, opt) => computed(t, { name: opt?.name }),
   computedCleanup: noop,
   /**
    * @template T

@@ -6,9 +6,8 @@ const noop = () => {};
  * @type {import(".").SFN}
  */
 export const signalFunctions = {
-  signal: (t) => proxy({ value: t }),
-  shallow: (t) => {
-    if (typeof t === "object" && t) {
+  signal: (t, opt) => {
+    if (!opt?.deep && typeof t === "object" && t) {
       return proxy({ value: ref(t) });
     }
     return proxy({ value: t });

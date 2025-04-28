@@ -1,8 +1,8 @@
 import { HKT, SignalFunctions } from "../index";
-import { Ref, ComputedRef } from "@vue/reactivity";
+import { ShallowRef, ComputedRef } from "@vue/reactivity";
 
 export interface SignalHKT extends HKT {
-  readonly signal: Ref<this["_T"]>;
+  readonly signal: ShallowRef<this["_T"]>;
 }
 
 export interface ComputedHKT extends HKT {
