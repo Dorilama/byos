@@ -8,13 +8,13 @@ const noop = () => {};
 export const signalFunctions = {
   signal: (t, opt) => {
     if (!opt?.deep && typeof t === "object" && t) {
-      return proxy({ value: ref(t) });
+      return proxy({ value: ref(t), __s: true });
     }
-    return proxy({ value: t });
+    return proxy({ value: t, __s: true });
   },
-  computed: (fn) => computed({ value: fn }),
+  computed: (fn) => computed({ value: fn, __s: () => true }),
   computedCleanup: noop,
-  toValue: (t) => (t && typeof t === "object" && "value" in t ? t.value : t),
+  toValue: (t) => (t && typeof t === "object" && "__s" in t ? t.value : t),
   setValue: (s, t) => {
     s.value = t;
   },

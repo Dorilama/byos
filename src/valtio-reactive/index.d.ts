@@ -4,6 +4,7 @@ import { computed } from "valtio-reactive";
 
 export interface SignalStore<T> {
   value: T;
+  __s: true;
 }
 
 export interface SignalHKT extends HKT {
