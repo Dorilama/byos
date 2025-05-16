@@ -11,7 +11,7 @@ import { testEffectCleanup } from "../test/effectCleanup";
 import { testComputedCleanup } from "../test/computedCleanup";
 import { signalFunctions } from ".";
 
-describe("toddle", () => {
+describe("nordcraft", () => {
   test("simpleSignal", () => {
     simpleSignal(signalFunctions);
   });

@@ -15,4 +15,4 @@ temp
 .vscode
 package-lock.json
 
-src/toddle/signal.*
+src/nordcraft/signal.*
