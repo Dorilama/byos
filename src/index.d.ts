@@ -93,3 +93,12 @@ export interface SignalFunctions<
     options?: { name?: string }
   ) => () => void;
 }
+
+export declare function usePeek<
+  SignalHKT extends HKT,
+  ComputedHKT extends HKT,
+  T
+>(
+  signalFunctions: SignalFunctions<SignalHKT, ComputedHKT>,
+  signal: MaybeSignal<SignalHKT, ComputedHKT, T>
+): [peek: () => T, stop: () => void];
