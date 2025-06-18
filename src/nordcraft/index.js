@@ -7,11 +7,11 @@ import { signal, Signal } from "./signal";
  * @returns
  */
 const isSignal = (t) => t instanceof Signal;
-const noop = () => {};
+import { noop, createSignalFunctions } from "..";
 /**
  * @type {import(".").SFN}
  */
-export const signalFunctions = {
+export const signalFunctions = createSignalFunctions({
   signal,
   computed: (fn, deps) => {
     const s = signal(fn());
@@ -65,4 +65,4 @@ export const signalFunctions = {
     };
     return stop;
   },
-};
+});

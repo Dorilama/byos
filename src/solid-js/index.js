@@ -9,14 +9,13 @@ import {
  * @type {import(".").IsFunction}
  */
 const isFunction = (val) => typeof val === "function";
-const noop = () => {};
+import { noop, createSignalFunctions } from "..";
 /**
  * @type {import(".").SFN}
  */
-export const signalFunctions = {
+export const signalFunctions = createSignalFunctions({
   signal: (t) => createSignal(t),
   computed: (fn) => createMemo(fn),
-  computedCleanup: noop,
   toValue: (t) => {
     if (Array.isArray(t) && isFunction(t[0])) {
       return t[0]();
@@ -43,4 +42,4 @@ export const signalFunctions = {
 
     return teardown;
   },
-};
+});

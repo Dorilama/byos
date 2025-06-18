@@ -63,6 +63,16 @@ export interface SignalFunctions<
   readonly computedCleanup: <T>(signal: Kind<ComputedHKT, T>) => void;
 
   /**
+   * Create a function that will peek the value of a signal without tracking it in an effect
+   * and a function that will cleanup any potential effect
+   *
+   * @param maybeSignal the signal or computed signal that will be used to peek its value
+   */
+  readonly usePeek: <T>(
+    maybeSignal: MaybeSignal<SignalHKT, ComputedHKT, T>
+  ) => [peek: () => T, stop: () => void];
+
+  /**
    * Normalizes values, signals and computed to values.
    *
    * @param maybeSignal value, signal or computed
@@ -94,11 +104,29 @@ export interface SignalFunctions<
   ) => () => void;
 }
 
-export declare function usePeek<
+export type SignalFunctionsPartial<
   SignalHKT extends HKT,
-  ComputedHKT extends HKT,
-  T
+  ComputedHKT extends HKT
+> = Omit<
+  SignalFunctions<SignalHKT, ComputedHKT>,
+  "computedCleanup" | "usePeek"
+> &
+  Partial<
+    Pick<SignalFunctions<SignalHKT, ComputedHKT>, "computedCleanup" | "usePeek">
+  >;
+
+export declare function createUsePeek<
+  SignalHKT extends HKT,
+  ComputedHKT extends HKT
 >(
-  signalFunctions: SignalFunctions<SignalHKT, ComputedHKT>,
-  signal: MaybeSignal<SignalHKT, ComputedHKT, T>
-): [peek: () => T, stop: () => void];
+  fns: SignalFunctionsPartial<SignalHKT, ComputedHKT>
+): SignalFunctions<SignalHKT, ComputedHKT>["usePeek"];
+
+export declare function createSignalFunctions<
+  SignalHKT extends HKT,
+  ComputedHKT extends HKT
+>(
+  fns: SignalFunctionsPartial<SignalHKT, ComputedHKT>
+): SignalFunctions<SignalHKT, ComputedHKT>;
+
+export declare function noop(): void;

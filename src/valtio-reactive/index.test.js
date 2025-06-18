@@ -10,6 +10,7 @@ import {
 import { testUseCounter } from "../test/counter";
 import { testEffectCleanup } from "../test/effectCleanup";
 import { testComputedCleanup } from "../test/computedCleanup";
+import { testUsePeek } from "../test/peek";
 import { signalFunctions } from ".";
 
 describe("valtio-reactive", () => {
@@ -45,5 +46,8 @@ describe("valtio-reactive", () => {
   // todo! check unwatching computed
   test.skip("testComputedCleanup", async () => {
     await testComputedCleanup(signalFunctions);
+  });
+  test("testUsePeek", async () => {
+    await testUsePeek(signalFunctions);
   });
 });

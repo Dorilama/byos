@@ -9,6 +9,7 @@ import {
 import { testUseCounter } from "../test/counter";
 import { testEffectCleanup } from "../test/effectCleanup";
 import { testComputedCleanup } from "../test/computedCleanup";
+import { testUsePeek } from "../test/peek";
 import { signalFunctions } from ".";
 import "zone.js";
 import { TestBed } from "@angular/core/testing";

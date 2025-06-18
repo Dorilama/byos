@@ -1,13 +1,12 @@
 import { observable, computed, isObservable, autorun } from "mobx";
 
-const noop = () => {};
+import { noop, createSignalFunctions } from "..";
 /**
  * @type {import(".").SFN}
  */
-export const signalFunctions = {
+export const signalFunctions = createSignalFunctions({
   signal: (t, opt) => observable.box(t, { name: opt?.name, deep: opt?.deep }),
   computed: (t, _, opt) => computed(t, { name: opt?.name }),
-  computedCleanup: noop,
   /**
    * @template T
    * @param {import("..").MaybeSignal<import(".").SignalHKT,import(".").ComputedHKT,T>} t
@@ -31,4 +30,4 @@ export const signalFunctions = {
       stop();
     };
   },
-};
+});

@@ -4,14 +4,13 @@ import { atom, computed, syncEffect, onCleanup } from "compostate";
  * @type {import(".").IsFunction}
  */
 const isFunction = (val) => typeof val === "function";
-const noop = () => {};
+import { noop, createSignalFunctions } from "..";
 /**
  * @type {import(".").SFN}
  */
-export const signalFunctions = {
+export const signalFunctions = createSignalFunctions({
   signal: (t) => atom(t),
   computed: (fn) => computed(fn),
-  computedCleanup: noop,
   toValue: (t) => (isFunction(t) ? t() : t),
   setValue: (s, t) => {
     s(t);
@@ -20,4 +19,4 @@ export const signalFunctions = {
     syncEffect(() => {
       onCleanup(fn() || noop);
     }),
-};
+});

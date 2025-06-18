@@ -52,21 +52,20 @@ export const signalFunctions: SFN;`
           await writeFile(
             index,
             `import {  signal, computed, effect } from "${name}";
+import { noop, createSignalFunctions } from "..";
 
-const noop = () => {};
 /**
 * @type {import(".").SFN}
 */
-export const signalFunctions = {
+export const signalFunctions = createSignalFunctions({
   signal,
   computed,
-  computedCleanup: noop,
-  toValue: (t) => t,
+    toValue: (t) => t,
   setValue: (s, t) => {
     s.value = t;
   },
   effect: (fn) => effect(() => fn()),
-};`
+});`
           );
           await writeFile(test, `import { test, describe } from "vitest";
 import {
@@ -80,6 +79,7 @@ import {
 import { testUseCounter } from "../test/counter";
 import { testEffectCleanup } from "../test/effectCleanup";
 import { testComputedCleanup } from "../test/computedCleanup";
+import { testUsePeek } from "../test/peek";
 import { signalFunctions } from ".";
 import { toValue } from "vue";
 
@@ -110,6 +110,9 @@ describe("${name}", () => {
   });
   test("testComputedCleanup", async () => {
     await testComputedCleanup(signalFunctions);
+  });
+  test("testUsePeek", async () => {
+    await testUsePeek(signalFunctions);
   });
 });
 `);

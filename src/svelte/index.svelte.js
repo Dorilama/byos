@@ -2,11 +2,11 @@
  * @type {import(".").IsFunction}
  */
 const isFunction = (val) => typeof val === "function";
-const noop = () => {};
+import { noop, createSignalFunctions } from "..";
 /**
  * @type {import(".").SFN}
  */
-export const signalFunctions = {
+export const signalFunctions = createSignalFunctions({
   signal: (t, opt) => {
     if (opt?.deep) {
       let s = $state(t);
@@ -40,7 +40,6 @@ export const signalFunctions = {
       __s: true,
     };
   },
-  computedCleanup: noop,
   toValue: (t) =>
     t && typeof t === "object" && "__s" in t
       ? isFunction(t.value)
@@ -54,4 +53,4 @@ export const signalFunctions = {
     $effect.root(() => {
       $effect(fn);
     }),
-};
+});

@@ -1,10 +1,10 @@
 import { ref, shallowRef, computed, effect, toValue } from "@vue/reactivity";
 
-const noop = () => {};
+import { noop, createSignalFunctions } from "..";
 /**
  * @type {import(".").SFN}
  */
-export const signalFunctions = {
+export const signalFunctions = createSignalFunctions({
   /**
    * @template T
    * @param {T} t
@@ -18,7 +18,6 @@ export const signalFunctions = {
     return shallowRef(t);
   },
   computed: (fn) => computed(fn),
-  computedCleanup: noop,
   toValue: (t) => toValue(t),
   setValue: (s, t) => {
     s.value = t;
@@ -34,4 +33,4 @@ export const signalFunctions = {
       runner.effect.stop();
     };
   },
-};
+});

@@ -1,13 +1,12 @@
 import { signal, computed, effect, isSignal } from "@angular/core";
 
-const noop = () => {};
+import { noop, createSignalFunctions } from "..";
 /**
  * @type {import(".").SFN}
  */
-export const signalFunctions = {
+export const signalFunctions = createSignalFunctions({
   signal: (t) => signal(t),
   computed: (fn) => computed(fn),
-  computedCleanup: noop,
   toValue: (t) => (isSignal(t) ? t() : t),
   setValue: (s, t) => {
     s.set(t);
@@ -20,4 +19,4 @@ export const signalFunctions = {
       e.destroy();
     };
   },
-};
+});

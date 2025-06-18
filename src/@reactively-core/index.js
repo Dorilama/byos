@@ -1,14 +1,13 @@
 import { Reactive, onCleanup, autoStabilize } from "@reactively/core";
 
 autoStabilize();
-const noop = () => {};
+import { noop, createSignalFunctions } from "..";
 /**
  * @type {import(".").SFN}
  */
-export const signalFunctions = {
+export const signalFunctions = createSignalFunctions({
   signal: (t, opt) => new Reactive(t, false, opt?.name),
   computed: (fn, _, opt) => new Reactive(fn, false, opt?.name),
-  computedCleanup: noop,
   toValue: (t) => (t instanceof Reactive ? t.get() : t),
   setValue: (s, t) => {
     s.set(t);
@@ -28,4 +27,4 @@ export const signalFunctions = {
       e.effect = false;
     };
   },
-};
+});

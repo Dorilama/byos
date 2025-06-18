@@ -1,6 +1,6 @@
 import { Signal, signal, computed, effect } from "@preact/signals-core";
 
-const noop = () => {};
+import { createSignalFunctions } from "..";
 /**
  *
  * @template T
@@ -11,13 +11,12 @@ const isSignal = (t) => t instanceof Signal;
 /**
  * @type {import(".").SFN}
  */
-export const signalFunctions = {
+export const signalFunctions = createSignalFunctions({
   signal,
   computed: (fn) => computed(fn),
-  computedCleanup: noop,
   toValue: (t) => (isSignal(t) ? t.value : t),
   setValue: (s, t) => {
     s.value = t;
   },
   effect,
-};
+});

@@ -3,14 +3,13 @@ import S from "s-js";
  * @type {import(".").IsFunction}
  */
 const isFunction = (val) => typeof val === "function";
-const noop = () => {};
+import { noop, createSignalFunctions } from "..";
 /**
  * @type {import(".").SFN}
  */
-export const signalFunctions = {
+export const signalFunctions = createSignalFunctions({
   signal: (t) => S.value(t),
   computed: (fn) => S(fn),
-  computedCleanup: noop,
   toValue: (t) => (isFunction(t) ? t() : t),
   setValue: (s, t) => {
     s(t);
@@ -27,4 +26,4 @@ export const signalFunctions = {
       stop();
     };
   },
-};
+});

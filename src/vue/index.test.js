@@ -45,7 +45,6 @@ describe("vue", () => {
   test("testComputedCleanup", async () => {
     await testComputedCleanup(signalFunctions);
   });
-
   test("testUsePeek", async () => {
     await testUsePeek(signalFunctions);
   });

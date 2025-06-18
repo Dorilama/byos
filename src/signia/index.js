@@ -1,13 +1,12 @@
 import { atom, computed, isSignal, react } from "signia";
 
-const noop = () => {};
+import { noop, createSignalFunctions } from "..";
 /**
  * @type {import(".").SFN}
  */
-export const signalFunctions = {
+export const signalFunctions = createSignalFunctions({
   signal: (t, opt) => atom(opt?.name || "", t),
   computed: (fn, _, opt) => computed(opt?.name || "", fn),
-  computedCleanup: noop,
   toValue: (t) => (isSignal(t) ? t.value : t),
   setValue: (s, t) => {
     s.set(t);
@@ -23,4 +22,4 @@ export const signalFunctions = {
       stop();
     };
   },
-};
+});

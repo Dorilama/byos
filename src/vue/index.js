@@ -8,11 +8,11 @@ import {
   shallowRef,
 } from "vue";
 
-const noop = () => {};
+import { noop, createSignalFunctions } from "..";
 /**
  * @type {import(".").SFN}
  */
-export const signalFunctions = {
+export const signalFunctions = createSignalFunctions({
   /**
    * @template T
    * @param {T} t
@@ -26,21 +26,17 @@ export const signalFunctions = {
     return shallowRef(t);
   },
   computed: (fn) => computed(fn),
-  computedCleanup: noop,
   toValue: (t) => toValue(t),
   setValue: (s, t) => {
     s.value = t;
   },
   effect: (fn) => {
-    return watchEffect(
-      (onCleanup) => {
-        const teardown = fn() || noop;
-        if (getCurrentScope()) {
-          onScopeDispose(teardown);
-        }
-        onCleanup(teardown);
+    return watchEffect((onCleanup) => {
+      const teardown = fn() || noop;
+      if (getCurrentScope()) {
+        onScopeDispose(teardown);
       }
-      // { flush: "sync" }
-    );
+      onCleanup(teardown);
+    });
   },
-};
+});

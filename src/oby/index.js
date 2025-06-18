@@ -1,13 +1,12 @@
 import $ from "oby";
 
-const noop = () => {};
+import { noop, createSignalFunctions } from "..";
 /**
  * @type {import(".").SFN}
  */
-export const signalFunctions = {
+export const signalFunctions = createSignalFunctions({
   signal: (t) => $(t),
   computed: (fn) => $.memo(fn),
-  computedCleanup: noop,
   toValue: (t) => ($.isObservable(t) ? t() : t),
   setValue: (s, t) => {
     s(t);
@@ -19,4 +18,4 @@ export const signalFunctions = {
       }
       // { sync: true }
     ),
-};
+});

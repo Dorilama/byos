@@ -1,16 +1,15 @@
 import { Signal, signal, computed, effect } from "usignal";
 
-const noop = () => {};
+import { noop, createSignalFunctions } from "..";
 /**
  * @type {import(".").SFN}
  */
-export const signalFunctions = {
+export const signalFunctions = createSignalFunctions({
   signal: (t) => signal(t),
   computed: (fn) => computed(fn),
-  computedCleanup: noop,
   toValue: (t) => (t instanceof Signal ? t.valueOf() : t),
   setValue: (s, t) => {
     s.value = t;
   },
   effect: (fn) => effect(fn),
-};
+});

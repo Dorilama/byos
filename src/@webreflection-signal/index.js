@@ -1,8 +1,10 @@
 import { Signal, signal, computed, effect } from "@webreflection/signal";
+import { createSignalFunctions } from "..";
+
 /**
  * @type {import(".").SFN}
  */
-export const signalFunctions = {
+export const signalFunctions = createSignalFunctions({
   signal,
   computed: (fn) => computed(fn),
   computedCleanup: (t) => {
@@ -14,4 +16,4 @@ export const signalFunctions = {
     s.value = t;
   },
   effect: (fn) => effect(() => fn()),
-};
+});

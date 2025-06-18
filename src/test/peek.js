@@ -1,6 +1,5 @@
 import { expect, vi } from "vitest";
 import { sleep } from ".";
-import { usePeek } from "..";
 
 /**
  * @template {import("..").HKT} SignalHKT
@@ -29,7 +28,7 @@ export function testUsePeek(fn) {
     try {
       const dep = fn.signal(0);
       const dep2 = fn.signal(1);
-      const [peek, stopPeek] = usePeek(fn, dep);
+      const [peek, stopPeek] = fn.usePeek(dep);
       const cb = vi.fn();
       const stop = fn.effect(() => {
         peek();
