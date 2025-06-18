@@ -1,5 +1,13 @@
 import { Signal, signal, computed, effect } from "@webreflection/signal";
-import { createSignalFunctions } from "..";
+import { noop, createSignalFunctions } from "..";
+
+/**
+ *
+ * @template Z
+ * @param {Z | Signal<Z>} t
+ * @returns
+ */
+const isSignal = (t) => t instanceof Signal;
 
 /**
  * @type {import(".").SFN}
@@ -7,11 +15,12 @@ import { createSignalFunctions } from "..";
 export const signalFunctions = createSignalFunctions({
   signal,
   computed: (fn) => computed(fn),
+  usePeek: (t) => [isSignal(t) ? () => t.peek() : () => t, noop],
   computedCleanup: (t) => {
     // @ts-ignore
     t.e?.dispose();
   },
-  toValue: (t) => (t instanceof Signal ? t.value : t),
+  toValue: (t) => (isSignal(t) ? t.value : t),
   setValue: (s, t) => {
     s.value = t;
   },
