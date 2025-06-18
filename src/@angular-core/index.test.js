@@ -89,4 +89,11 @@ describe("@angular/core", () => {
       });
     });
   });
+  test("testUsePeek", async () => {
+    await new Promise((res, rej) => {
+      TestBed.runInInjectionContext(() => {
+        testUsePeek(signalFunctions).then(res).catch(rej);
+      });
+    });
+  });
 });
