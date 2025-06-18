@@ -1,4 +1,5 @@
 import { signal, Signal } from "./signal";
+import { noop, createSignalFunctions } from "..";
 
 /**
  *
@@ -7,7 +8,7 @@ import { signal, Signal } from "./signal";
  * @returns
  */
 const isSignal = (t) => t instanceof Signal;
-import { noop, createSignalFunctions } from "..";
+
 /**
  * @type {import(".").SFN}
  */
@@ -36,6 +37,7 @@ export const signalFunctions = createSignalFunctions({
     s.subscribe(noop, { destroy: stop });
     return s;
   },
+  usePeek: (t) => [isSignal(t) ? () => t.get() : () => t, noop],
   computedCleanup: (t) => t.destroy(),
   toValue: (t) => (isSignal(t) ? t.get() : t),
   setValue: (s, t) => {

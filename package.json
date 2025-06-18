@@ -103,7 +103,7 @@
     "@sveltejs/vite-plugin-svelte": "^5",
     "@vue/reactivity": "^3",
     "@webreflection/signal": "^2",
-    "alien-signals": "^1",
+    "alien-signals": "^2",
     "compostate": "^0.6.0-alpha.1",
     "fast-deep-equal": "^3",
     "happy-dom": "^17",
