@@ -4,6 +4,7 @@ import {
   createRenderEffect,
   onCleanup,
   createRoot,
+  untrack,
 } from "solid-js";
 /**
  * @type {import(".").IsFunction}
@@ -16,6 +17,15 @@ import { noop, createSignalFunctions } from "..";
 export const signalFunctions = createSignalFunctions({
   signal: (t) => createSignal(t),
   computed: (fn) => createMemo(fn),
+  usePeek: (t) => {
+    if (Array.isArray(t) && isFunction(t[0])) {
+      return [() => untrack(t[0]), noop];
+    }
+    if (isFunction(t)) {
+      return [() => untrack(/** @type {(...args: any[]) => any} */ (t)), noop];
+    }
+    return [() => t, noop];
+  },
   toValue: (t) => {
     if (Array.isArray(t) && isFunction(t[0])) {
       return t[0]();
