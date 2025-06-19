@@ -1,7 +1,7 @@
 import {
   ref,
   computed,
-  watchEffect,
+  watch,
   toValue,
   getCurrentScope,
   onScopeDispose,
@@ -26,17 +26,22 @@ export const signalFunctions = createSignalFunctions({
     return shallowRef(t);
   },
   computed: (fn) => computed(fn),
+  usePeek: (t) => [() => toValue(t), noop],
   toValue: (t) => toValue(t),
   setValue: (s, t) => {
     s.value = t;
   },
-  effect: (fn) => {
-    return watchEffect((onCleanup) => {
-      const teardown = fn() || noop;
-      if (getCurrentScope()) {
-        onScopeDispose(teardown);
-      }
-      onCleanup(teardown);
-    });
+  effect: (fn, deps) => {
+    return watch(
+      deps,
+      (_, __, onCleanup) => {
+        const teardown = fn() || noop;
+        if (getCurrentScope()) {
+          onScopeDispose(teardown);
+        }
+        onCleanup(teardown);
+      },
+      { immediate: true }
+    );
   },
 });
