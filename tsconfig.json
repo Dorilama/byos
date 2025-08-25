@@ -17,6 +17,6 @@
     "stripInternal": true,
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
-    "strict": true
+    "strict": true,"resolveJsonModule": true
   }
 }

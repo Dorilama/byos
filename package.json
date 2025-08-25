@@ -90,23 +90,17 @@
   },
   "scripts": {
     "test": "vitest",
-    "install-peer": "node ./scripts/peer.js",
     "add-package": "node ./scripts/addPackage.js",
     "publish-package": "npm publish --access public"
   },
   "peerDependencies": {
-    "@angular/compiler": "^19",
     "@angular/core": "^19",
-    "@angular/platform-browser-dynamic": "^19",
     "@preact/signals-core": "^1",
     "@reactively/core": "^0.0.8",
-    "@sveltejs/vite-plugin-svelte": "^5",
     "@vue/reactivity": "^3",
     "@webreflection/signal": "^2",
     "alien-signals": "^2",
     "compostate": "^0.6.0-alpha.1",
-    "fast-deep-equal": "^3",
-    "happy-dom": "^17",
     "mobx": "^6",
     "oby": "^15",
     "s-js": "^0.4",
@@ -116,26 +110,16 @@
     "usignal": "^0.9",
     "valtio": "^2",
     "valtio-reactive": "^0.1",
-    "vue": "^3",
-    "zone.js": "^0.15"
+    "vue": "^3"
   },
   "peerDependenciesMeta": {
-    "@angular/compiler": {
-      "optional": true
-    },
     "@angular/core": {
-      "optional": true
-    },
-    "@angular/platform-browser-dynamic": {
       "optional": true
     },
     "@preact/signals-core": {
       "optional": true
     },
     "@reactively/core": {
-      "optional": true
-    },
-    "@sveltejs/vite-plugin-svelte": {
       "optional": true
     },
     "@vue/reactivity": {
@@ -148,12 +132,6 @@
       "optional": true
     },
     "compostate": {
-      "optional": true
-    },
-    "fast-deep-equal": {
-      "optional": true
-    },
-    "happy-dom": {
       "optional": true
     },
     "mobx": {
@@ -185,14 +163,34 @@
     },
     "vue": {
       "optional": true
-    },
-    "zone.js": {
-      "optional": true
     }
   },
   "type": "module",
   "devDependencies": {
+    "@angular/core": "^19",
+    "@angular/platform-browser-dynamic": "^19",
+    "@preact/signals-core": "^1",
+    "@reactively/core": "^0.0.8",
+    "@sveltejs/vite-plugin-svelte": "^5",
     "@types/node": "^22.14.0",
-    "vitest": "^3.1.1"
+    "@vue/reactivity": "^3",
+    "@webreflection/signal": "^2",
+    "alien-signals": "^2",
+    "compostate": "^0.6.0-alpha.1",
+    "fast-deep-equal": "^3",
+    "happy-dom": "^17",
+    "mobx": "^6",
+    "oby": "^15",
+    "s-js": "^0.4",
+    "signia": "^0.1",
+    "solid-js": "^1",
+    "svelte": "^5",
+    "usignal": "^0.9",
+    "valtio": "^2",
+    "valtio-reactive": "^0.1",
+    "vitest": "^3.1.1",
+    "@angular/compiler": "^19",
+    "vue": "^3",
+    "zone.js": "^0.15"
   }
 }
