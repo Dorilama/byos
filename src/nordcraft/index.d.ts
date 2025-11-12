@@ -9,6 +9,6 @@ export type SFN = SignalFunctions<SignalHKT, SignalHKT>;
 
 export const signalFunctions: SFN;
 
-export function nordcraftSignalFunctions(
+export type nordcraftSignalFunctions = (
   signal: <T>(value: T) => Kind<SignalHKT, T>
-): SFN;
+) => SFN;
