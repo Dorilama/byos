@@ -44,6 +44,10 @@
       "types": "./src/mobx/index.d.ts",
       "import": "./src/mobx/index.js"
     },
+    "./nordcraft": {
+      "types": "./src/nordcraft/index.d.ts",
+      "import": "./src/nordcraft/index.js"
+    },
     "./oby": {
       "types": "./src/oby/index.d.ts",
       "import": "./src/oby/index.js"

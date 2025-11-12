@@ -10,7 +10,10 @@ import { testUseCounter } from "../test/counter";
 import { testEffectCleanup } from "../test/effectCleanup";
 import { testComputedCleanup } from "../test/computedCleanup";
 import { testUsePeek } from "../test/peek";
-import { signalFunctions } from ".";
+import { nordcraftSignalFunctions } from ".";
+import { signal } from "./signal";
+
+const signalFunctions = nordcraftSignalFunctions(signal);
 
 describe("nordcraft", () => {
   test("simpleSignal", () => {
