@@ -12,3 +12,7 @@ export interface ComputedHKT extends HKT {
 export type SFN = SignalFunctions<SignalHKT, ComputedHKT>;
 
 export const signalFunctions: SFN;
+
+export function isSignal<T>(
+  t: T | Signal<T>
+): t is Signal<T> | ReadonlySignal<T>;

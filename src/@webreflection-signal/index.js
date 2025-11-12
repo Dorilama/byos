@@ -5,7 +5,7 @@ import { noop, createSignalFunctions } from "..";
  *
  * @template Z
  * @param {Z | Signal<Z>} t
- * @returns
+ * @returns {t is Signal<Z>}
  */
 const isSignal = (t) => t instanceof Signal;
 

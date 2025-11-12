@@ -36,6 +36,7 @@ describe("@webreflection/signal", () => {
   test("testEffectCleanup", async () => {
     await testEffectCleanup(signalFunctions);
   });
+  // todo!! fix this
   test.skip("testComputedCleanup", async () => {
     await testComputedCleanup(signalFunctions);
   });

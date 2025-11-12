@@ -2,10 +2,7 @@ import { Signal, signal, computed, effect } from "@preact/signals-core";
 
 import { noop, createSignalFunctions } from "..";
 /**
- *
- * @template T
- * @param {T | Signal<T>} t
- * @returns
+ * @type {import(".").isSignal}
  */
 const isSignal = (t) => t instanceof Signal;
 /**
@@ -19,5 +16,5 @@ export const signalFunctions = createSignalFunctions({
   setValue: (s, t) => {
     s.value = t;
   },
-  effect,
+  effect: (fn) => effect(fn),
 });
