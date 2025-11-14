@@ -16,6 +16,10 @@
       "types": "./src/@angular-core/index.d.ts",
       "import": "./src/@angular-core/index.js"
     },
+    "./@preact-signals": {
+      "types": "./src/@preact-signals/index.d.ts",
+      "import": "./src/@preact-signals/index.js"
+    },
     "./@preact-signals-core": {
       "types": "./src/@preact-signals-core/index.d.ts",
       "import": "./src/@preact-signals-core/index.js"
@@ -99,6 +103,7 @@
   },
   "peerDependencies": {
     "@angular/core": "^19",
+    "@preact/signals": "^2",
     "@preact/signals-core": "^1",
     "@reactively/core": "^0.0.8",
     "@vue/reactivity": "^3",
@@ -118,6 +123,9 @@
   },
   "peerDependenciesMeta": {
     "@angular/core": {
+      "optional": true
+    },
+    "@preact/signals": {
       "optional": true
     },
     "@preact/signals-core": {
@@ -171,6 +179,7 @@
   },
   "type": "module",
   "devDependencies": {
+    "@angular/compiler": "^19",
     "@angular/core": "^19",
     "@angular/platform-browser-dynamic": "^19",
     "@preact/signals-core": "^1",
@@ -193,7 +202,6 @@
     "valtio": "^2",
     "valtio-reactive": "^0.1",
     "vitest": "^3.1.1",
-    "@angular/compiler": "^19",
     "vue": "^3",
     "zone.js": "^0.15"
   }
