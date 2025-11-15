@@ -149,6 +149,9 @@
     "mobx": {
       "optional": true
     },
+    "@nordcraft/runtime": {
+      "optional": true
+    },
     "oby": {
       "optional": true
     },
@@ -182,17 +185,19 @@
     "@angular/compiler": "^19",
     "@angular/core": "^19",
     "@angular/platform-browser-dynamic": "^19",
+    "@preact/signals": "^2",
     "@preact/signals-core": "^1",
     "@reactively/core": "^0.0.8",
-    "@sveltejs/vite-plugin-svelte": "^5",
+    "@sveltejs/vite-plugin-svelte": "^6",
     "@types/node": "^22.14.0",
     "@vue/reactivity": "^3",
     "@webreflection/signal": "^2",
     "alien-signals": "^2",
     "compostate": "^0.6.0-alpha.1",
     "fast-deep-equal": "^3",
-    "happy-dom": "^17",
+    "happy-dom": "^20",
     "mobx": "^6",
+    "@nordcraft/runtime": "^1",
     "oby": "^15",
     "s-js": "^0.4",
     "signia": "^0.1",
@@ -201,7 +206,7 @@
     "usignal": "^0.9",
     "valtio": "^2",
     "valtio-reactive": "^0.1",
-    "vitest": "^3.1.1",
+    "vitest": "^4.0.9",
     "vue": "^3",
     "zone.js": "^0.15"
   }

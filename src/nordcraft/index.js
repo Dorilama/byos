@@ -1,6 +1,6 @@
 const noop = () => {};
 
-// see readme
+// nordcraft apps have the signal in the window object
 /**
  * @type {import(".").nordcraftSignalFunctions}
  */
@@ -9,8 +9,8 @@ export const nordcraftSignalFunctions = (signal) => {
   /**
    *
    * @template T
-   * @param {T | import("./signal").Signal<T>} t
-   * @returns {t is import("./signal").Signal<T>}
+   * @param {T | import("@nordcraft/runtime/dist/signal/signal").Signal<T>} t
+   * @returns {t is import("@nordcraft/runtime/dist/signal/signal").Signal<T>}
    */
   const isSignal = (t) => t instanceof sampleSignal.constructor;
   return {

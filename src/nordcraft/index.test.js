@@ -11,7 +11,7 @@ import { testEffectCleanup } from "../test/effectCleanup";
 import { testComputedCleanup } from "../test/computedCleanup";
 import { testUsePeek } from "../test/peek";
 import { nordcraftSignalFunctions } from ".";
-import { signal } from "./signal";
+import { signal } from "@nordcraft/runtime/dist/signal/signal";
 
 const signalFunctions = nordcraftSignalFunctions(signal);
 
