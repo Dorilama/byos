@@ -1,6 +1,6 @@
 {
   "name": "@dorilama/byos",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Single interface for multiple signals",
   "keywords": [
     "signals"
@@ -91,10 +91,10 @@
   "files": [
     "src"
   ],
-  "homepage": "",
+  "homepage": "https://github.com/Dorilama/byos",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/Dorilama/byos"
   },
   "scripts": {
     "test": "vitest",
