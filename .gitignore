@@ -14,5 +14,3 @@ logs
 temp
 .vscode
 package-lock.json
-
-src/nordcraft/signal.*
